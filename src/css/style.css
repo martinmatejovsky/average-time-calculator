@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #ecf0f1;
+}
+.c-button {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+.c-button button {
+  min-width: 28px;
+  height: 28px;
+  color: #fff;
+  border-color: #9b59b6;
+  border-radius: 5px;
+}
+.c-button.is-row-controller button {
+  background-color: #9b59b6;
+  background-position: center center;
+}
+.c-button.is-minus button {
+  background-image: url("../assets/img/icons/btn-minus.svg");
+}
+.c-button.is-plus button {
+  background-image: url("../assets/img/icons/btn-plus.svg");
+}
+.c-button:hover button {
+  cursor: pointer;
+  background-color: #8e44ad;
+}

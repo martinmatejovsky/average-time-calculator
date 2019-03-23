@@ -1,0 +1,42 @@
+// Button Vue component
+@c-btn-row-controller-col-bg: @primary-col;
+@c-btn-row-controller-col-bg-hover: @secondary-col;
+
+.c-button {
+    display: inline-block;
+    margin: 0 @elements-margin-mobile 0 @elements-margin-mobile;
+
+    button {
+        min-width: @form-element-height;
+        height: @form-element-height;
+        color: @global-col-white;
+        border-color: @c-btn-row-controller-col-bg;
+        border-radius: @elements-border-radius;
+    }
+
+    &.is-row-controller {
+        button {
+            background-color: @c-btn-row-controller-col-bg;
+            background-position: center center;
+        }
+    }
+
+    &.is-minus {
+        button {
+            background-image: url("../assets/img/icons/btn-minus.svg");
+        }
+    }
+
+    &.is-plus {
+        button {
+            background-image: url("../assets/img/icons/btn-plus.svg");
+        }
+    }
+
+    &:hover {
+        button {
+            cursor: pointer;
+            background-color: @c-btn-row-controller-col-bg-hover;
+        }
+    }
+}
