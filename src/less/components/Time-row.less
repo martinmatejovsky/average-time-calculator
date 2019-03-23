@@ -4,4 +4,20 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    .time-row-controller {
+        display: flex;
+        justify-content: flex-end;
+        min-width: 2 * (@form-element-height + 2 * @elements-margin-mobile);
+    }
+
+    .c-checkbox {
+        flex-basis: 40px;
+    }
+
+    .c-input {
+        input {
+            width: 100%;
+        }
+    }
 }

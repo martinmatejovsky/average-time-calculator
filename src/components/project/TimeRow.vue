@@ -1,11 +1,13 @@
 <template>
     <div class="c-time-row">
         <Checkbox type="checkbox" :inputModel="rowIsAffectiongCaltulation" />
-        <Input class="is-mini" type="number" />
-        <Input class="is-mini" type="number" />
-        <Input class="is-mini" type="number" />
-        <Button label="-" classCustom="button-row-controller is-minus" />
-        <Button label="+" classCustom="button-row-controller is-plus" />
+        <Input type="number" />
+        <Input type="number" />
+        <Input type="number" />
+        <div class="time-row-controller">
+            <Button label="-" classCustom="button-row-controller is-minus" />
+            <Button label="+" classCustom="button-row-controller is-plus" />
+        </div>
     </div>
 </template>
 

@@ -1,11 +1,15 @@
 // Checkbox Vue component
 
+// Component variables
+@checkbox-size: 20px;
+
+
 .c-checkbox {
     .checkbox-container {
         display: block;
         position: relative;
-        height: 25px;
-        padding-left: 25px;
+        height: @checkbox-size;
+        padding-left: @checkbox-size;
         cursor: pointer;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -26,6 +30,7 @@
     input {
         position: absolute;
         opacity: 0;
+        margin: 0;
         cursor: pointer;
         height: 0;
         width: 0;
@@ -40,8 +45,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: 25px;
-        width: 25px;
+        height: @checkbox-size;
+        width: @checkbox-size;
         border: 1px solid @global-col-black;
         border-radius: 50%;
         background-color: @global-col-white;
