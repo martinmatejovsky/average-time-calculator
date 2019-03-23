@@ -1,15 +1,16 @@
 // Checkbox Vue component
 
 // Component variables
-@checkbox-size: 20px;
+@checkbox-size-mobile: 20px;
+@checkbox-size-desktop: 25px;
 
 
 .c-checkbox {
     .checkbox-container {
         display: block;
         position: relative;
-        height: @checkbox-size;
-        padding-left: @checkbox-size;
+        width: @checkbox-size-mobile;
+        height: @checkbox-size-mobile;
         cursor: pointer;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -18,11 +19,11 @@
 
         &:hover {
             input ~ .checkbox-decorator {
-                background-color: @global-col-bg-secondary;
+                background-color: @col-global-bg-secondary;
             }
 
             input:checked ~ .checkbox-decorator {
-                background-color: @secondary-col;
+                background-color: @col-global-secondary;
             }
         }
     }
@@ -37,7 +38,7 @@
 
         &:checked ~ .checkbox-decorator {
             margin: 0;
-            background-color: @primary-col;
+            background-color: @col-global-primary;
         }
     }
 
@@ -45,11 +46,27 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: @checkbox-size;
-        width: @checkbox-size;
-        border: 1px solid @global-col-black;
+        height: @checkbox-size-mobile;
+        width: @checkbox-size-mobile;
+        border: 1px solid @col-global-black;
         border-radius: 50%;
-        background-color: @global-col-white;
+        background-color: @col-global-white;
     }
 }
 
+
+// media queries
+// --------------------------------------------------
+@media screen and (min-width: @desktop-width) {
+    .c-checkbox {
+        .checkbox-container {
+            width: @checkbox-size-desktop;
+            height: @checkbox-size-desktop;
+        }
+
+        .checkbox-decorator {
+            height: @checkbox-size-desktop;
+            width: @checkbox-size-desktop;
+        }
+    }
+}
