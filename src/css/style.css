@@ -15,7 +15,7 @@ body {
   border-color: #9b59b6;
   border-radius: 5px;
 }
-.c-button.is-row-controller button {
+.c-button.button-row-controller button {
   background-color: #9b59b6;
   background-position: center center;
 }
@@ -28,4 +28,33 @@ body {
 .c-button:hover button {
   cursor: pointer;
   background-color: #8e44ad;
+}
+.c-input {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+.c-input input {
+  height: 28px;
+  padding: 0 4px 0 4px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+.c-input input::-webkit-outer-spin-button,
+.c-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.c-input input[type=number] {
+  -moz-appearance: textfield;
+}
+.c-input.is-mini input {
+  width: 47px;
+}
+.c-input [type="number"] {
+  text-align: right;
+}
+.c-time-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

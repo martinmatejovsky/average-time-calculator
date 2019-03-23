@@ -26,7 +26,3 @@
         }
     }
 </script>
-
-<style>
-    @import "../../less/components/Input.less";
-</style>

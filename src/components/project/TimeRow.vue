@@ -4,8 +4,8 @@
         <Input class="is-mini" type="number" />
         <Input class="is-mini" type="number" />
         <Input class="is-mini" type="number" />
-        <Button label="-" classCustom="is-row-controller is-minus"/>
-        <Button label="+" classCustom="is-row-controller is-plus"/>
+        <Button label="-" classCustom="button-row-controller is-minus"/>
+        <Button label="+" classCustom="button-row-controller is-plus"/>
     </div>
 </template>
 
@@ -25,7 +25,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    @import "../../less/components/Time-row.less";
-</style>
