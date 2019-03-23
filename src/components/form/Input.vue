@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" v-model="inputModel" />
+        <input :type="type" :size="size" />
     </div>
 </template>
 
@@ -15,7 +15,6 @@
                 default: 16,
                 type: Number
             },
-            'inputModel': {}
         },
         computed: {
             classObject: function () {

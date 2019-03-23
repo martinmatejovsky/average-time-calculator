@@ -29,6 +29,44 @@ body {
   cursor: pointer;
   background-color: #8e44ad;
 }
+.c-checkbox .checkbox-container {
+  display: block;
+  position: relative;
+  height: 25px;
+  padding-left: 25px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.c-checkbox .checkbox-container:hover input ~ .checkbox-decorator {
+  background-color: #bdc3c7;
+}
+.c-checkbox .checkbox-container:hover input:checked ~ .checkbox-decorator {
+  background-color: #8e44ad;
+}
+.c-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.c-checkbox input:checked ~ .checkbox-decorator {
+  margin: 0;
+  background-color: #9b59b6;
+}
+.c-checkbox .checkbox-decorator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #fff;
+}
 .c-input {
   display: inline-block;
   margin: 0 5px 0 5px;

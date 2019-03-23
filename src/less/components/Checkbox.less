@@ -1,0 +1,50 @@
+// Checkbox Vue component
+
+.c-checkbox {
+    .checkbox-container {
+        display: block;
+        position: relative;
+        height: 25px;
+        padding-left: 25px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover {
+            input ~ .checkbox-decorator {
+                background-color: @global-col-bg-secondary;
+            }
+
+            input:checked ~ .checkbox-decorator {
+                background-color: @secondary-col;
+            }
+        }
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkbox-decorator {
+            margin: 0;
+            background-color: @primary-col;
+        }
+    }
+
+    .checkbox-decorator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        border: 1px solid @global-col-black;
+        border-radius: 50%;
+        background-color: @global-col-white;
+    }
+}
+
