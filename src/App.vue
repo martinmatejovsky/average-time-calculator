@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import TimeCalculator  from './components/TimeCalculator.vue'
+    import TimeCalculator  from './components/TheTimeCalculator.vue'
 
     export default {
         name: 'app',

@@ -12,9 +12,9 @@
 </template>
 
 <script>
-    import InputComponent from '../form/InputComponent'
-    import ButtonComponent from "../form/ButtonComponent";
-    import CheckboxComponent from "../form/CheckboxComponent";
+    import InputComponent from '../form/BaseInput'
+    import ButtonComponent from "../form/BaseButton";
+    import CheckboxComponent from "../form/BaseCheckbox";
 
     export default {
         components: {
