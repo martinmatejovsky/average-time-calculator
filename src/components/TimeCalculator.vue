@@ -2,7 +2,7 @@
     <div>
         <h1>Výpočet průměrného času</h1>
 
-        <TimeRow />
+        <TimeRow @remove-time-row-emit="removeTimeRow"/>
     </div>
 </template>
 
@@ -16,6 +16,9 @@
         },
         props: {
             msg: String
+        },
+        methods: {
+            removeTimeRow: () => {}
         }
     }
 </script>

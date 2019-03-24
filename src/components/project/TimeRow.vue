@@ -5,8 +5,8 @@
         <InputComponent type="number" />
         <InputComponent type="number" />
         <div class="time-row-controller">
-            <ButtonComponent label="-" classCustom="button-row-controller is-minus" />
-            <ButtonComponent label="+" classCustom="button-row-controller is-plus" />
+            <ButtonComponent label="-" classCustom="button-row-controller is-minus" @button-clicked-emit="buttonClickedRemove" />
+            <ButtonComponent label="+" classCustom="button-row-controller is-plus" @button-clicked-emit="buttonClickedAdd" />
         </div>
     </div>
 </template>
@@ -25,6 +25,14 @@
         data() {
             return {
                 rowIsAffectiongCaltulation: true
+            }
+        },
+        methods: {
+            buttonClickedRemove: function () {
+                this.$emit('remove-time-row-emit')
+            },
+            buttonClickedAdd: function () {
+                this.$emit('add-time-row-emit')
             }
         }
     }

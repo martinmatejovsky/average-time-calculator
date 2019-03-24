@@ -1,6 +1,6 @@
 <template>
     <div class="c-button" :class="this.classCustom">
-        <button>{{label}}</button>
+        <button @click="buttonClickedEvent">{{label}}</button>
     </div>
 </template>
 
@@ -14,6 +14,11 @@
             classCustom: {
                 default: "",
                 type: String
+            }
+        },
+        methods: {
+            buttonClickedEvent: function () {
+                this.$emit('button-clicked-emit');
             }
         }
     }
