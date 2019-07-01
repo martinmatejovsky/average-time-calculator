@@ -1,27 +1,18 @@
 <template>
     <div class="c-time-row">
-        <CheckboxComponent type="checkbox" :inputModel="rowIsAffectiongCaltulation" />
-        <InputComponent type="number" />
-        <InputComponent type="number" />
-        <InputComponent type="number" />
+        <BaseCheckbox type="checkbox" :inputModel="rowIsAffectiongCaltulation" />
+        <BaseInput type="number" name="input-hours" />
+        <BaseInput type="number" name="input-minutes" />
+        <BaseInput type="number" name="input-seconds" />
         <div class="time-row-controller">
-            <ButtonComponent label="-" classCustom="button-row-controller is-minus" @button-clicked-emit="buttonClickedRemove" />
-            <ButtonComponent label="+" classCustom="button-row-controller is-plus" @button-clicked-emit="buttonClickedAdd" />
+            <BaseButton label="-" classCustom="button-row-controller is-minus" @button-clicked-emit="buttonClickedRemove" />
+            <BaseButton label="+" classCustom="button-row-controller is-plus" @button-clicked-emit="buttonClickedAdd" />
         </div>
     </div>
 </template>
 
 <script>
-    import InputComponent from '../form/BaseInput'
-    import ButtonComponent from "../form/BaseButton";
-    import CheckboxComponent from "../form/BaseCheckbox";
-
     export default {
-        components: {
-            CheckboxComponent,
-            ButtonComponent,
-            InputComponent
-        },
         data() {
             return {
                 rowIsAffectiongCaltulation: true

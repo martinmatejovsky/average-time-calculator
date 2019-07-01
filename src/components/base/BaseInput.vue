@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" />
+        <input :type="type" :size="size" name="name"/>
     </div>
 </template>
 
@@ -15,6 +15,11 @@
                 default: 16,
                 type: Number
             },
+            'name': {
+                default: "",
+                type: String,
+                required: true
+            }
         },
         computed: {
             classObject: function () {
