@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" name="name"/>
+        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" />
     </div>
 </template>
 
@@ -8,17 +8,25 @@
     export default {
         props: {
             'type': {
-                default: "text",
-                type: String
+                type: String,
+                default: "text"
             },
             'size': {
-                default: 16,
-                type: Number
+                type: Number,
+                default: 16
             },
             'name': {
-                default: "",
                 type: String,
+                default: "",
                 required: true
+            },
+            'placeholder': {
+                type: String,
+                default: ""
+            },
+            'readonly': {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

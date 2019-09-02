@@ -9,6 +9,7 @@
         padding: 0 @elements-padding-mobile 0 @elements-padding-mobile;
         border: 1px solid @col-global-black;
         border-radius: @elements-border-radius;
+        text-align: center;
 
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
@@ -21,7 +22,8 @@
         }
     }
 
-    [type="number"] {
-        text-align: right;
+    :read-only {
+        border: 0 none;
+        background-color: transparent;
     }
 }

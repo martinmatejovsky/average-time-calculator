@@ -4,14 +4,19 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 2 * @elements-margin-mobile;
 
     .time-row-controller {
         display: flex;
         justify-content: flex-end;
-        min-width: 2 * (@form-element-height + 2 * @elements-margin-mobile);
+        min-width: (@form-element-height + 2 * @elements-margin-mobile);
     }
 
-    .c-checkbox {
+    .time-row-controller-heading {
+        margin: 0 auto;
+    }
+
+    .time-row-activity-switch {
         flex-basis: 40px;
     }
 
