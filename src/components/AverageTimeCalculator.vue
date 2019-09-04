@@ -22,7 +22,7 @@
     import store from "../store/index";
 
     export default {
-        name: 'HelloWorld',
+        name: 'AverageTimeCalculator',
         components: {
             TimeRow
         },

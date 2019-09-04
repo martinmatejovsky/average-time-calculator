@@ -18,7 +18,7 @@
         },
         methods: {
             buttonClickedEvent: function () {
-                this.$emit('button-clicked-emit');
+                this.$emit('emit-button-clicked');
             }
         }
     }

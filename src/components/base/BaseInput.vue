@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" />
+        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" @change="valueChanged"/>
     </div>
 </template>
 
@@ -29,11 +29,21 @@
                 default: false
             }
         },
+        data() {
+            return {
+                inputValue: ""
+            }
+        },
         computed: {
             classObject: function () {
                 return {
                     "is-number": this.type === "number"
                 }
+            }
+        },
+        methods: {
+            valueChanged() {
+                this.$emit("emit-value-changed", this.inputValue);
             }
         }
     }
