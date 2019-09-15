@@ -6,8 +6,13 @@
         <TimeRow role="heading" />
 
         <!-- rows with inputs -->
-        <TimeRow role="input" @remove-time-row-emit="removeTimeRow" />
-
+        <template v-for="(timeRow, index) in timeRowsList">
+            <TimeRow :key="index" :is-enabled="timeRow.enabled" role="input"
+                     @emit-remove-time-row="removeTimeRow"
+                     @emit-time-changed="timeRow.totalTimeInMsec = $event"
+                     @emitActivityStatusChanged="timeRow.enabled = $event"
+            />
+        </template>
         <!-- result container -->
         <div class="time-calc-result">
             <div class="average-time-result-label">Průměrný čas:</div>
@@ -19,21 +24,50 @@
 
 <script>
     import TimeRow from "./project/TimeRow";
-    import store from "../store/index";
 
     export default {
         name: 'AverageTimeCalculator',
         components: {
             TimeRow
         },
+        data() {
+            return {
+                timeRowsList: [
+                    {
+                        enabled: true,
+                        totalTimeInMsec: 0
+                    },
+                    {
+                        enabled: true,
+                        totalTimeInMsec: 0
+                    }
+                ]
+            }
+        },
         computed: {
             averageTime() {
-                return store.state.averageTime;
+                let totalTimeSum = 0;
+                let rowsInCount = 0;
+                for (let i = 0; i < this.timeRowsList.length; i++) {
+                    let tRow = this.timeRowsList[i];
+
+                    if (tRow.enabled && tRow.totalTimeInMsec > 0) {
+                        rowsInCount += 1;
+                        totalTimeSum += this.timeRowsList[i].totalTimeInMsec;
+                    }
+                }
+                return totalTimeSum / rowsInCount;
             }
         },
         methods: {
-            removeTimeRow: () => {
-                store.commit("mutateAverageTime", 20)
+            removeTimeRow() {
+                // TODO - do something beautiful
+            },
+            saveTimeRowPayload(rowIndex, newTime) {
+                this.timeRowsList[rowIndex].totalTimeInMsec = newTime;
+            },
+            updateState() {
+
             }
         }
     }

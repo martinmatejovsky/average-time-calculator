@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" @change="valueChanged"/>
+        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" @change="emitValueChanged" @keyup="emitValueEntered"/>
     </div>
 </template>
 
@@ -42,8 +42,11 @@
             }
         },
         methods: {
-            valueChanged() {
+            emitValueChanged() {
                 this.$emit("emit-value-changed", this.inputValue);
+            },
+            emitValueEntered() {
+                this.$emit("emit-value-key-up", this.inputValue);
             }
         }
     }

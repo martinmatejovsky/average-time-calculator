@@ -1,27 +1,23 @@
 <template>
     <div class="c-time-row">
+
+        <!-- checkbox indicating if this time row is active and is influencing calculations -->
         <div class="time-row-activity-switch">
-            <BaseCheckbox v-if="role === 'input'" type="checkbox" :inputModel="rowIsAffectingCaltulation" />
+            <BaseCheckbox v-if="role === 'input'" type="checkbox" :inputModel.sync="rowIsAffectingCalculation" />
             <span v-if="role === 'heading'">on/off</span>
         </div>
 
-        <div class="time-row-input-field">
-            <BaseInput v-if="role === 'input'" type="number" name="input-hours" placeholder="hodiny" @emit-value-changed="updateTimeValue($event, 'hour')" />
-            <span v-if="role === 'heading'">hodiny</span>
-        </div>
+        <!-- headers for inputs or inputs for times -->
+        <template v-for="input in timeUnits">
+            <div :key="input.label" v-if="input.enabled" class="time-row-input-field">
+                <BaseInput v-if="role === 'input'" type="number" name="input-minutes" :placeholder="input.label" @emit-value-key-up="input.quantity = $event" />
+                <span v-if="role === 'heading'">minuty</span>
+            </div>
+        </template>
 
-        <div class="time-row-input-field">
-            <BaseInput v-if="role === 'input'" type="number" name="input-minutes" placeholder="minuty" @emit-value-changed="updateTimeValue($event, 'min')" />
-            <span v-if="role === 'heading'">minuty</span>
-        </div>
-
-        <div class="time-row-input-field">
-            <BaseInput v-if="role === 'input'" type="number" name="input-seconds" placeholder="sekundy" @emit-value-changed="updateTimeValue($event, 'sec')" />
-            <span v-if="role === 'heading'">sekundy</span>
-        </div>
-
+        <!-- button for removing row -->
         <div class="time-row-controller">
-            <BaseButton v-if="role === 'input'" classCustom="button-row-controller is-minus" @emit-button-clicked="buttonClickedRemove" />
+            <BaseButton v-if="role === 'input'" classCustom="button-row-controller is-minus" @emit-button-clicked="emitButtonClickedRemove" />
             <span v-if="role === 'heading'" class="time-row-controller-heading">smaž</span>
         </div>
     </div>
@@ -39,47 +35,65 @@
                 type: String,
                 validator: (type) => ["heading", "input"].includes(type),
                 default: "input"
+            },
+            isEnabled: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
-                rowIsAffectingCaltulation: true,
-                timeInRow: {
-                    // TODO: keep as number. Now it is receiving from input strings
-                    hours: 0,
-                    minutes: 0,
-                    seconds: 0
+                rowIsAffectingCalculation: this.isEnabled,
+                timeUnits: {
+                    day: {
+                        enabled: false,
+                        quantity: 0,
+                        label: "dny"
+                    },
+                    hour: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "hodiny"
+                    },
+                    minute: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "minuty"
+                    },
+                    second: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "sekundy"
+                    }
                 }
             }
         },
         watch: {
-            timeInRow: {
+            timeUnits: {
                 deep: true,
                 handler () {
-                    console.log(this.timeInRow);
+                    let totalTime =
+                        (this.timeUnits.day.quantity * 1000 * 60 * 60 * 24) +
+                        (this.timeUnits.hour.quantity * 1000 * 60 * 60) +
+                        (this.timeUnits.minute.quantity * 1000 * 60) +
+                        (this.timeUnits.second.quantity * 1000);
+
+                    this.emitNewTime(totalTime);
                 }
+            },
+            rowIsAffectingCaltulation() {
+                this.emitActivityStatusChanged(this.rowIsAffectingCalculation);
             }
         },
         methods: {
-            buttonClickedRemove: function () {
-                this.$emit('remove-time-row-emit')
+            emitButtonClickedRemove() {
+                this.$emit('emit-remove-time-row')
             },
-            updateTimeValue: function (quantity, unit) {
-                switch (unit) {
-                    case 'hour':
-                        // TODO: validator for numbers only
-                        this.timeInRow.hours = quantity;
-                        break;
-                    case 'min':
-                        this.timeInRow.minutes = quantity;
-                        break;
-                    case 'sec':
-                        this.timeInRow.seconds = quantity;
-                        break;
-                }
+            emitNewTime(totalTime) {
+                this.$emit("emit-time-changed", totalTime);
             },
-            emitNewTime () {
-                this.$emit("emit-time-changed", this.timeInRow);
+            emitActivityStatusChanged() {
+                this.$emit("emit-row-activity-status-changed")
             }
         }
     }
