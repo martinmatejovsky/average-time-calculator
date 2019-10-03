@@ -7,12 +7,13 @@
 
         <!-- rows with inputs -->
         <template v-for="(timeRow, index) in timeRowsList">
-            <TimeRow :key="index" :is-enabled="timeRow.enabled" role="input"
-                     @emit-remove-time-row="removeTimeRow"
+            <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input"
+                     @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
-                     @emitActivityStatusChanged="timeRow.enabled = $event"
+                     @emit-row-activity-status-changed="timeRow.enabled = $event"
             />
         </template>
+
         <!-- result container -->
         <div class="time-calc-result">
             <div class="average-time-result-label">Průměrný čas:</div>
@@ -32,6 +33,7 @@
         },
         data() {
             return {
+                // TODO: timeTowList should be an Array. Now it is an Object type
                 timeRowsList: [
                     {
                         enabled: true,
@@ -56,18 +58,17 @@
                         totalTimeSum += this.timeRowsList[i].totalTimeInMsec;
                     }
                 }
-                return totalTimeSum / rowsInCount;
+                if (totalTimeSum && rowsInCount) {
+                    return totalTimeSum / rowsInCount;
+                } else {
+                    return 0;
+                }
             }
         },
         methods: {
-            removeTimeRow() {
-                // TODO - do something beautiful
-            },
-            saveTimeRowPayload(rowIndex, newTime) {
-                this.timeRowsList[rowIndex].totalTimeInMsec = newTime;
-            },
-            updateState() {
-
+            removeTimeRow(index) {
+                // TODO - remove() does nothing. What is correct javascript function for removing item in array?
+                console.log(index);
             }
         }
     }

@@ -36,14 +36,14 @@
                 validator: (type) => ["heading", "input"].includes(type),
                 default: "input"
             },
-            isEnabled: {
+            initialEnabledState: {
                 type: Boolean,
                 default: true
             }
         },
         data() {
             return {
-                rowIsAffectingCalculation: this.isEnabled,
+                rowIsAffectingCalculation: this.initialEnabledState,
                 timeUnits: {
                     day: {
                         enabled: false,
@@ -81,8 +81,8 @@
                     this.emitNewTime(totalTime);
                 }
             },
-            rowIsAffectingCaltulation() {
-                this.emitActivityStatusChanged(this.rowIsAffectingCalculation);
+            rowIsAffectingCalculation() {
+                this.emitActivityStatusChanged();
             }
         },
         methods: {
@@ -93,7 +93,7 @@
                 this.$emit("emit-time-changed", totalTime);
             },
             emitActivityStatusChanged() {
-                this.$emit("emit-row-activity-status-changed")
+                this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
             }
         }
     }
