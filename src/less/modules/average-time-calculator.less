@@ -1,7 +1,41 @@
+// =======================================================
 // module Average Time Calculator
+// =======================================================
 
-.average-time-result-label,
-.average-time-result-value {
-    display: inline-block;
-    width: 50%;
+@button-row-controller-col-bg: @col-global-primary;
+@button-row-controller-col-bg-hover: @col-global-secondary;
+@button-row-controller-col-bg-disabled: @col-global-primary;
+
+.m-average-time {
+    .average-time-result-label,
+    .average-time-result-value {
+        display: inline-block;
+        width: 50%;
+    }
+
+    // Component extensions and modifications
+    // =======================================================
+
+    // BaseButton
+    .c-button {
+        &.button-row-controller {
+            button {
+                background-color: @button-row-controller-col-bg;
+                background-position: center center;
+                border-color: @button-row-controller-col-bg;
+
+                &:hover {
+                    background-color: @button-row-controller-col-bg-hover;
+                }
+
+                &:disabled {
+                    background-color: @col-btn-bg-disabled;
+                    border-color: @col-btn-brd-disabled;
+                    &:hover {
+                        background-color: @col-btn-bg-disabled;
+                    }
+                }
+            }
+        }
+    }
 }

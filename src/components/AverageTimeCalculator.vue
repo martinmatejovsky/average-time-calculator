@@ -72,6 +72,7 @@
         },
         methods: {
             removeTimeRow(index) {
+                // TODO - removes always last Vue element regardless of index
                 this.timeRowsList.splice(index, 1);
             }
         }

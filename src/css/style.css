@@ -15,26 +15,28 @@ body {
 .c-button button {
   min-width: 28px;
   height: 28px;
+  background-color: #797979;
   color: #fff;
-  border-color: #9b59b6;
+  border-color: #999999;
   border-radius: 5px;
 }
-.c-button button:disabled {
-  background-color: #999999;
+.c-button button:hover {
+  cursor: pointer;
+  background-color: #666666;
 }
-.c-button.button-row-controller button {
-  background-color: #9b59b6;
-  background-position: center center;
+.c-button button:disabled {
+  background-color: #b3b3b3;
+  border-color: #b3b3b3;
+}
+.c-button button:disabled:hover {
+  background-color: #b3b3b3;
+  cursor: not-allowed;
 }
 .c-button.is-minus button {
   background-image: url("../assets/img/icons/btn-minus.svg");
 }
 .c-button.is-plus button {
   background-image: url("../assets/img/icons/btn-plus.svg");
-}
-.c-button:hover button {
-  cursor: pointer;
-  background-color: #8e44ad;
 }
 .c-checkbox .checkbox-container {
   display: block;
@@ -128,8 +130,23 @@ body {
 .c-time-row .c-input input {
   width: 100%;
 }
-.average-time-result-label,
-.average-time-result-value {
+.m-average-time .average-time-result-label,
+.m-average-time .average-time-result-value {
   display: inline-block;
   width: 50%;
+}
+.m-average-time .c-button.button-row-controller button {
+  background-color: #9b59b6;
+  background-position: center center;
+  border-color: #9b59b6;
+}
+.m-average-time .c-button.button-row-controller button:hover {
+  background-color: #8e44ad;
+}
+.m-average-time .c-button.button-row-controller button:disabled {
+  background-color: #b3b3b3;
+  border-color: #b3b3b3;
+}
+.m-average-time .c-button.button-row-controller button:disabled:hover {
+  background-color: #b3b3b3;
 }
