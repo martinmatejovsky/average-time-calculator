@@ -17,7 +17,7 @@
 
         <!-- button for removing row -->
         <div class="time-row-controller">
-            <BaseButton v-if="role === 'input'" classCustom="button-row-controller is-minus" @emit-button-clicked="emitButtonClickedRemove" />
+            <BaseButton v-if="role === 'input'"  classCustom="button-row-controller is-minus" :disabled="isTheOnlyTimeRow" @emit-button-clicked="emitButtonClickedRemove" />
             <span v-if="role === 'heading'" class="time-row-controller-heading">smaž</span>
         </div>
     </div>
@@ -39,6 +39,10 @@
             initialEnabledState: {
                 type: Boolean,
                 default: true
+            },
+            isTheOnlyTimeRow: {
+                type: Boolean,
+                default: false,
             }
         },
         data() {

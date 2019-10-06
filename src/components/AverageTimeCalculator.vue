@@ -8,6 +8,7 @@
         <!-- rows with inputs -->
         <template v-for="(timeRow, index) in timeRowsList">
             <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input"
+                     :isTheOnlyTimeRow="timeRowsList.length === 1"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
                      @emit-row-activity-status-changed="timeRow.enabled = $event"
@@ -42,6 +43,10 @@
                     {
                         enabled: true,
                         totalTimeInMsec: 0
+                    },
+                    {
+                        enabled: true,
+                        totalTimeInMsec: 0
                     }
                 ]
             }
@@ -67,8 +72,7 @@
         },
         methods: {
             removeTimeRow(index) {
-                // TODO - remove() does nothing. What is correct javascript function for removing item in array?
-                console.log(index);
+                this.timeRowsList.splice(index, 1);
             }
         }
     }

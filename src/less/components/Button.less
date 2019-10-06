@@ -21,8 +21,14 @@
         color: @col-global-white;
         border-color: @c-btn-row-controller-col-bg;
         border-radius: @elements-border-radius;
+
+        &:disabled {
+            background-color: #999999;
+        }
     }
 
+    // TODO - create new space for modifications special for this Calculator project. Modification row-controller is not "base" button behavior. And then:
+    // TODO - Move styles that are obviously not default for reusable base component into this new space
     &.button-row-controller {
         button {
             background-color: @c-btn-row-controller-col-bg;

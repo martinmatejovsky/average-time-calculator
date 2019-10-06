@@ -1,6 +1,6 @@
 <template>
     <div class="c-button" :class="this.classCustom">
-        <button @click="buttonClickedEvent">{{label}}</button>
+        <button :disabled="disabled" @click="buttonClickedEvent">{{label}}</button>
     </div>
 </template>
 
@@ -8,12 +8,16 @@
     export default {
         props: {
             label: {
-                default: "",
-                type: String
+                type: String,
+                default: ""
             },
             classCustom: {
-                default: "",
-                type: String
+                type: String,
+                default: ""
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {

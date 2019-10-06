@@ -11,16 +11,16 @@
     export default {
         props: {
             label: {
-                default: "",
-                type: String
+                type: String,
+                default: ""
             },
             inputModel: {
-                default: false,
-                type: Boolean
+                type: Boolean,
+                default: false
             },
             classCustom: {
-                default: "",
-                type: String
+                type: String,
+                default: ""
             }
         },
         data: function () {

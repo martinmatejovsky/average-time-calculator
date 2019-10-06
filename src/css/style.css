@@ -19,6 +19,9 @@ body {
   border-color: #9b59b6;
   border-radius: 5px;
 }
+.c-button button:disabled {
+  background-color: #999999;
+}
 .c-button.button-row-controller button {
   background-color: #9b59b6;
   background-position: center center;
