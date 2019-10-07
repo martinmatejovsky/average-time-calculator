@@ -7,7 +7,7 @@
 
         <!-- rows with inputs -->
         <template v-for="(timeRow, index) in timeRowsList">
-            <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input"
+            <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="index"
                      :isTheOnlyTimeRow="timeRowsList.length === 1"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
@@ -72,7 +72,7 @@
         },
         methods: {
             removeTimeRow(index) {
-                // TODO - removes always last Vue element regardless of index
+                // TODO - incorrectly removes always last Vue element regardless of index
                 this.timeRowsList.splice(index, 1);
             }
         }

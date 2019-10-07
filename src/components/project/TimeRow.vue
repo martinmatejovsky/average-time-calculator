@@ -4,21 +4,21 @@
         <!-- checkbox indicating if this time row is active and is influencing calculations -->
         <div class="time-row-activity-switch">
             <BaseCheckbox v-if="role === 'input'" type="checkbox" :inputModel.sync="rowIsAffectingCalculation" />
-            <span v-if="role === 'heading'">on/off</span>
+            <div v-if="role === 'heading'">on/off</div>
         </div>
 
         <!-- headers for inputs or inputs for times -->
-        <template v-for="input in timeUnits">
-            <div :key="input.label" v-if="input.enabled" class="time-row-input-field">
-                <BaseInput v-if="role === 'input'" type="number" name="input-minutes" :placeholder="input.label" @emit-value-key-up="input.quantity = $event" />
-                <span v-if="role === 'heading'">minuty</span>
+        <template v-for="inputUnit in timeUnits">
+            <div :key="inputUnit.label" v-if="inputUnit.enabled" class="time-row-input-field">
+                <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID" :placeholder="inputUnit.label" @emit-value-key-up="inputUnit.quantity = $event" />
+                <div v-if="role === 'heading'">{{inputUnit.label}}</div>
             </div>
         </template>
 
         <!-- button for removing row -->
         <div class="time-row-controller">
             <BaseButton v-if="role === 'input'"  classCustom="button-row-controller is-minus" :disabled="isTheOnlyTimeRow" @emit-button-clicked="emitButtonClickedRemove" />
-            <span v-if="role === 'heading'" class="time-row-controller-heading">smaž</span>
+            <div v-if="role === 'heading'" class="time-row-controller-heading">smaž</div>
         </div>
     </div>
 </template>
@@ -36,6 +36,10 @@
                 validator: (type) => ["heading", "input"].includes(type),
                 default: "input"
             },
+            timeRowID: {
+                type: Number,
+                default: 0
+            },
             initialEnabledState: {
                 type: Boolean,
                 default: true
@@ -52,22 +56,26 @@
                     day: {
                         enabled: false,
                         quantity: 0,
-                        label: "dny"
+                        label: "dny",
+                        machineLabel: "days"
                     },
                     hour: {
                         enabled: true,
                         quantity: 0,
-                        label: "hodiny"
+                        label: "hodiny",
+                        machineLabel: "hours"
                     },
                     minute: {
                         enabled: true,
                         quantity: 0,
-                        label: "minuty"
+                        label: "minuty",
+                        machineLabel: "minutes"
                     },
                     second: {
                         enabled: true,
                         quantity: 0,
-                        label: "sekundy"
+                        label: "sekundy",
+                        machineLabel: "seconds"
                     }
                 }
             }

@@ -1,6 +1,8 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" @change="emitValueChanged" @keyup="emitValueEntered"/>
+        <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue"
+               @change="emitValueChanged"
+               @keyup="emitValueEntered"/>
     </div>
 </template>
 

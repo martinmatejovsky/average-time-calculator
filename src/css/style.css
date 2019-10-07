@@ -26,7 +26,7 @@ body {
 }
 .c-button button:disabled {
   background-color: #b3b3b3;
-  border-color: #b3b3b3;
+  border-color: #cacaca;
 }
 .c-button button:disabled:hover {
   background-color: #b3b3b3;
@@ -38,11 +38,13 @@ body {
 .c-button.is-plus button {
   background-image: url("../assets/img/icons/btn-plus.svg");
 }
+.c-checkbox {
+  width: 20px;
+  height: 20px;
+}
 .c-checkbox .checkbox-container {
   display: block;
   position: relative;
-  width: 20px;
-  height: 20px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -121,11 +123,19 @@ body {
   justify-content: flex-end;
   min-width: 38px;
 }
+.c-time-row .time-row-input-field {
+  width: 100%;
+  text-align: center;
+}
 .c-time-row .time-row-controller-heading {
   margin: 0 auto;
 }
 .c-time-row .time-row-activity-switch {
-  flex-basis: 40px;
+  min-width: 40px;
+  text-align: center;
+}
+.c-time-row .time-row-activity-switch .c-checkbox {
+  margin: 0 auto;
 }
 .c-time-row .c-input input {
   width: 100%;
@@ -145,7 +155,7 @@ body {
 }
 .m-average-time .c-button.button-row-controller button:disabled {
   background-color: #b3b3b3;
-  border-color: #b3b3b3;
+  border-color: #cacaca;
 }
 .m-average-time .c-button.button-row-controller button:disabled:hover {
   background-color: #b3b3b3;
