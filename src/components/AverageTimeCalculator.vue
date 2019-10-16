@@ -6,17 +6,24 @@
         <TimeRow role="heading" />
 
         <!-- rows with inputs -->
-        <template v-for="(timeRow, index) in timeRowsList">
+        <!-- TODO - if possible remove wrapping div and use <template> instead -->
+        <div v-for="(timeRow, index) in timeRowsList" :key="index">
             <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="index"
                      :isTheOnlyTimeRow="timeRowsList.length === 1"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
                      @emit-row-activity-status-changed="timeRow.enabled = $event"
             />
-        </template>
+            <div @click="myRemove(timeRow)">Remove</div>
+        </div>
+
+        <!-- add rows controller -->
+        <div class="average-time-add-time-row">
+            <BaseButton classCustom="button-row-controller is-plus" @emit-button-clicked="emitButtonClickedAdd" />
+        </div>
 
         <!-- result container -->
-        <div class="time-calc-result">
+        <div class="average-time-calc-result">
             <div class="average-time-result-label">Průměrný čas:</div>
             <div class="average-time-result-value">{{averageTime}}</div>
         </div>
@@ -34,21 +41,39 @@
         },
         data() {
             return {
-                // TODO: timeTowList should be an Array. Now it is an Object type
                 timeRowsList: [
                     {
                         enabled: true,
                         totalTimeInMsec: 0
-                    },
-                    {
-                        enabled: true,
-                        totalTimeInMsec: 0
-                    },
-                    {
-                        enabled: true,
-                        totalTimeInMsec: 0
                     }
-                ]
+                ],
+                // TODO: to have this duplicated in <timeRow> is a bad idea
+                timeRowTemplate: {
+                    day: {
+                        enabled: false,
+                        quantity: 0,
+                        label: "dny",
+                        machineLabel: "days"
+                    },
+                    hour: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "hodiny",
+                        machineLabel: "hours"
+                    },
+                    minute: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "minuty",
+                        machineLabel: "minutes"
+                    },
+                    second: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "sekundy",
+                        machineLabel: "seconds"
+                    }
+                }
             }
         },
         computed: {
@@ -64,7 +89,7 @@
                     }
                 }
                 if (totalTimeSum && rowsInCount) {
-                    return totalTimeSum / rowsInCount;
+                    return Math.floor(totalTimeSum / rowsInCount);
                 } else {
                     return 0;
                 }
@@ -74,6 +99,14 @@
             removeTimeRow(index) {
                 // TODO - incorrectly removes always last Vue element regardless of index
                 this.timeRowsList.splice(index, 1);
+            },
+            emitButtonClickedAdd() {
+                this.timeRowsList.push(
+                    {
+                        enabled: true,
+                        totalTimeInMsec: 0
+                    }
+                )
             }
         }
     }

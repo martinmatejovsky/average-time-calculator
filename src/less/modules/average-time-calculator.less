@@ -7,10 +7,19 @@
 @button-row-controller-col-bg-disabled: @col-global-primary;
 
 .m-average-time {
-    .average-time-result-label,
+    .average-time-calc-result {
+        display: flex;
+        justify-content: space-between;
+        margin: (2 * @elements-margin-mobile) @elements-margin-mobile;
+    }
+
     .average-time-result-value {
-        display: inline-block;
-        width: 50%;
+        text-align: right;
+    }
+
+    .average-time-add-time-row {
+        display: flex;
+        justify-content: center;
     }
 
     // Component extensions and modifications
@@ -31,11 +40,22 @@
                 &:disabled {
                     background-color: @col-btn-bg-disabled;
                     border-color: @col-btn-brd-disabled;
+
                     &:hover {
                         background-color: @col-btn-bg-disabled;
                     }
                 }
             }
+        }
+    }
+}
+
+// Media queries
+// =======================================================
+@media screen and (min-width: @tablet-width) {
+    .m-average-time {
+        .average-time-calc-result {
+            margin: (2 * @elements-margin-desktop) @elements-margin-desktop;
         }
     }
 }
