@@ -17,7 +17,7 @@ body {
   height: 28px;
   background-color: #797979;
   color: #fff;
-  border-color: #999999;
+  border: 0 none;
   border-radius: 5px;
 }
 .c-button button:hover {
@@ -26,7 +26,6 @@ body {
 }
 .c-button button:disabled {
   background-color: #b3b3b3;
-  border-color: #cacaca;
 }
 .c-button button:disabled:hover {
   background-color: #b3b3b3;
@@ -75,7 +74,7 @@ body {
   left: 0;
   height: 20px;
   width: 20px;
-  border: 1px solid #000;
+  border: 2px solid #000;
   border-radius: 50%;
   background-color: #fff;
 }
@@ -96,7 +95,7 @@ body {
 .c-input input {
   height: 28px;
   padding: 0 4px 0 4px;
-  border: 1px solid #000;
+  border: 2px solid #000;
   border-radius: 5px;
   text-align: center;
 }
@@ -155,14 +154,12 @@ body {
 .m-average-time .c-button.button-row-controller button {
   background-color: #9b59b6;
   background-position: center center;
-  border-color: #9b59b6;
 }
 .m-average-time .c-button.button-row-controller button:hover {
   background-color: #8e44ad;
 }
 .m-average-time .c-button.button-row-controller button:disabled {
   background-color: #b3b3b3;
-  border-color: #cacaca;
 }
 .m-average-time .c-button.button-row-controller button:disabled:hover {
   background-color: #b3b3b3;

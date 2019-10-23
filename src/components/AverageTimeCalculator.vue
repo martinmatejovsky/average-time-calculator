@@ -6,16 +6,14 @@
         <TimeRow role="heading" />
 
         <!-- rows with inputs -->
-        <!-- TODO - if possible remove wrapping div and use <template> instead -->
-        <div v-for="(timeRow, index) in timeRowsList" :key="index">
-            <TimeRow :key="index" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="index"
+        <template v-for="(timeRow, index) in timeRowsList">
+            <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="timeRow.rowID"
                      :isTheOnlyTimeRow="timeRowsList.length === 1"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
                      @emit-row-activity-status-changed="timeRow.enabled = $event"
             />
-            <div @click="myRemove(timeRow)">Remove</div>
-        </div>
+        </template>
 
         <!-- add rows controller -->
         <div class="average-time-add-time-row">
@@ -41,39 +39,18 @@
         },
         data() {
             return {
+                timeRowTemplate: {
+                    enabled: true,
+                    totalTimeInMsec: 0
+                },
                 timeRowsList: [
                     {
+                        rowID: 0,
                         enabled: true,
                         totalTimeInMsec: 0
                     }
                 ],
-                // TODO: to have this duplicated in <timeRow> is a bad idea
-                timeRowTemplate: {
-                    day: {
-                        enabled: false,
-                        quantity: 0,
-                        label: "dny",
-                        machineLabel: "days"
-                    },
-                    hour: {
-                        enabled: true,
-                        quantity: 0,
-                        label: "hodiny",
-                        machineLabel: "hours"
-                    },
-                    minute: {
-                        enabled: true,
-                        quantity: 0,
-                        label: "minuty",
-                        machineLabel: "minutes"
-                    },
-                    second: {
-                        enabled: true,
-                        quantity: 0,
-                        label: "sekundy",
-                        machineLabel: "seconds"
-                    }
-                }
+                lastUsedRowID: 1
             }
         },
         computed: {
@@ -91,22 +68,25 @@
                 if (totalTimeSum && rowsInCount) {
                     return Math.floor(totalTimeSum / rowsInCount);
                 } else {
+                    // TODO - unreachable code?
                     return 0;
                 }
             }
         },
         methods: {
+            addTimeRow() {
+                this.timeRowsList.push({
+                    enabled: true,
+                    totalTimeInMsec: 0,
+                    rowID: this.lastUsedRowID
+                });
+                this.lastUsedRowID++;
+            },
             removeTimeRow(index) {
-                // TODO - incorrectly removes always last Vue element regardless of index
                 this.timeRowsList.splice(index, 1);
             },
             emitButtonClickedAdd() {
-                this.timeRowsList.push(
-                    {
-                        enabled: true,
-                        totalTimeInMsec: 0
-                    }
-                )
+                this.addTimeRow();
             }
         }
     }

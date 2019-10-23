@@ -84,7 +84,13 @@
             timeUnits: {
                 deep: true,
                 handler () {
-                    this.emitNewTime(this.timeUnits);
+                    let totalTime =
+                        (this.timeUnits.day.quantity * 1000 * 60 * 60 * 24) +
+                        (this.timeUnits.hour.quantity * 1000 * 60 * 60) +
+                        (this.timeUnits.minute.quantity * 1000 * 60) +
+                        (this.timeUnits.second.quantity * 1000);
+
+                    this.emitNewTime(totalTime);
                 }
             },
             rowIsAffectingCalculation() {
@@ -93,7 +99,7 @@
         },
         methods: {
             emitButtonClickedRemove() {
-                this.$emit('emit-remove-time-row')
+                this.$destroy();
             },
             emitNewTime(totalTime) {
                 this.$emit("emit-time-changed", totalTime);
@@ -101,6 +107,9 @@
             emitActivityStatusChanged() {
                 this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
             }
+        },
+        destroyed() {
+            this.$emit('emit-remove-time-row');
         }
     }
 </script>
