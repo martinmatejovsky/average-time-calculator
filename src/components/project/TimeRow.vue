@@ -4,7 +4,7 @@
         <!-- checkbox indicating if this time row is active and is influencing calculations -->
         <div class="time-row-activity-switch">
             <BaseCheckbox v-if="role === 'input'" type="checkbox" :inputModel.sync="rowIsAffectingCalculation" />
-            <div v-if="role === 'heading'">on/off</div>
+            <div v-if="role === 'heading'">skrýt</div>
         </div>
 
         <!-- headers for inputs or inputs for times -->
