@@ -3,10 +3,27 @@
 }
 body {
   background-color: #ecf0f1;
+  font-family: "Verdana", "Arial", sans-serif;
+}
+h1 {
+  margin: 15px 0 15px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #000;
+  font-size: 1.8em;
+  text-align: center;
+}
+input {
+  font-family: "Verdana", "Arial", sans-serif;
 }
 #app {
   max-width: 800px;
   margin: 0 auto;
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    margin: 20px 0 20px 0;
+    padding-bottom: 20px;
+  }
 }
 .c-button {
   display: inline-block;
@@ -38,8 +55,8 @@ body {
   background-image: url("../assets/img/icons/btn-plus.svg");
 }
 .c-checkbox {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 .c-checkbox .checkbox-container {
   display: block;
@@ -72,8 +89,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
   border: 2px solid #000;
   border-radius: 50%;
   background-color: #fff;
@@ -115,7 +132,10 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+}
+.c-time-row.is-not-affecting-calculation .c-input input {
+  color: #797979;
 }
 .c-time-row .time-row-controller {
   display: flex;

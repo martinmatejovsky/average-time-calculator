@@ -43,13 +43,7 @@
                     enabled: true,
                     totalTimeInMsec: 0
                 },
-                timeRowsList: [
-                    {
-                        rowID: 0,
-                        enabled: true,
-                        totalTimeInMsec: 0
-                    }
-                ],
+                timeRowsList: [],
                 lastUsedRowID: 1
             }
         },
@@ -57,6 +51,7 @@
             averageTime() {
                 let totalTimeSum = 0;
                 let rowsInCount = 0;
+
                 for (let i = 0; i < this.timeRowsList.length; i++) {
                     let tRow = this.timeRowsList[i];
 
@@ -68,7 +63,6 @@
                 if (totalTimeSum && rowsInCount) {
                     return Math.floor(totalTimeSum / rowsInCount);
                 } else {
-                    // TODO - unreachable code?
                     return 0;
                 }
             }
@@ -88,6 +82,9 @@
             emitButtonClickedAdd() {
                 this.addTimeRow();
             }
+        },
+        created() {
+            this.addTimeRow();
         }
     }
 </script>

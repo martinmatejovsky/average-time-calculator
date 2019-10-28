@@ -8,9 +8,31 @@
 
 body {
     background-color: @col-global-bg;
+    font-family: @font-family-global;
+}
+
+h1 {
+    margin: (3 * @elements-margin-mobile) 0 (3 * @elements-margin-mobile) 0;
+    padding-bottom: 3 * @elements-margin-mobile;
+    border-bottom: 1px solid @col-global-black;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+input {
+    font-family: @font-family-global;
 }
 
 #app {
     max-width: @desktop-width;
     margin: 0 auto;
+}
+
+// Media queries
+// =======================================================
+@media screen and (min-width: @desktop-width) {
+    h1 {
+        margin: (4 * @elements-margin-mobile) 0 (4 * @elements-margin-mobile) 0;
+        padding-bottom: 4 * @elements-margin-mobile;
+    }
 }

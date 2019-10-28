@@ -2,11 +2,22 @@
 // Time Row vue component
 // =======================================================
 
+// Variables
+@col-time-row-input-not-affecting: @col-input-disabled;
+
 .c-time-row {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 2 * @elements-margin-mobile;
+    margin-bottom: 3 * @elements-margin-mobile;
+
+    &.is-not-affecting-calculation {
+        .c-input {
+            input {
+                color: @col-time-row-input-not-affecting;
+            }
+        }
+    }
 
     .time-row-controller {
         display: flex;

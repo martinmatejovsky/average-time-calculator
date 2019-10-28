@@ -1,5 +1,5 @@
 <template>
-    <div class="c-time-row">
+    <div class="c-time-row" :class="{'is-not-affecting-calculation' : !rowIsAffectingCalculation}">
 
         <!-- checkbox indicating if this time row is active and is influencing calculations -->
         <div class="time-row-activity-switch">
