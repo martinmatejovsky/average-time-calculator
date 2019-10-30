@@ -21,7 +21,7 @@
         </div>
 
         <!-- result container -->
-        <div class="average-time-calc-result">
+        <div class="average-time-result">
             <div class="average-time-result-label">Průměrný čas:</div>
             <div class="average-time-result-value">{{averageTime}}</div>
         </div>
@@ -85,7 +85,7 @@
             parseTimeByUnits(timeInMs) {
                 let wholeDays =  Math.floor(timeInMs / 86400000);
                 let wholeHours =  Math.floor((timeInMs / 3600000) % 24);
-                let wholeMinuted =  Math.floor((timeInMs / 60000)) % 60;
+                let wholeMinuted =  Math.floor((timeInMs / 60000) % 60);
                 let seconds =  parseFloat(((timeInMs / 1000) % 60).toFixed(2));
 
                 let dayString = wholeDays ? wholeDays + " d " : "";

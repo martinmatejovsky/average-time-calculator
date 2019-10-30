@@ -159,10 +159,11 @@ input {
 .c-time-row .c-input input {
   width: 100%;
 }
-.m-average-time .average-time-calc-result {
+.m-average-time .average-time-result {
   display: flex;
   justify-content: space-between;
   margin: 10px 5px;
+  font-size: 1.3em;
 }
 .m-average-time .average-time-result-value {
   text-align: right;
@@ -185,7 +186,8 @@ input {
   background-color: #b3b3b3;
 }
 @media screen and (min-width: 420px) {
-  .m-average-time .average-time-calc-result {
+  .m-average-time .average-time-result {
     margin: 20px 10px;
+    font-size: 1.5em;
   }
 }

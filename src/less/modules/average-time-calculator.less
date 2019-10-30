@@ -7,10 +7,11 @@
 @button-row-controller-col-bg-disabled: @col-global-primary;
 
 .m-average-time {
-    .average-time-calc-result {
+    .average-time-result {
         display: flex;
         justify-content: space-between;
         margin: (2 * @elements-margin-mobile) @elements-margin-mobile;
+        font-size: 1.3em;
     }
 
     .average-time-result-value {
@@ -52,8 +53,9 @@
 // =======================================================
 @media screen and (min-width: @tablet-width) {
     .m-average-time {
-        .average-time-calc-result {
+        .average-time-result {
             margin: (2 * @elements-margin-desktop) @elements-margin-desktop;
+            font-size: 1.5em;
         }
     }
 }
