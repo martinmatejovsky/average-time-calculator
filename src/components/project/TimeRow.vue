@@ -10,7 +10,7 @@
         <!-- headers for inputs or inputs for times -->
         <template v-for="inputUnit in timeUnits">
             <div :key="inputUnit.label" v-if="inputUnit.enabled" class="time-row-input-field">
-                <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID" :placeholder="inputUnit.label" @emit-value-key-up="inputUnit.quantity = $event" />
+                <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID" :placeholder="inputUnit.placeholder" @emit-value-key-up="inputUnit.quantity = $event" />
                 <div v-if="role === 'heading'">{{inputUnit.label}}</div>
             </div>
         </template>
@@ -57,25 +57,29 @@
                         enabled: false,
                         quantity: 0,
                         label: "dny",
-                        machineLabel: "days"
+                        machineLabel: "days",
+                        placeholder: "d"
                     },
                     hour: {
                         enabled: true,
                         quantity: 0,
                         label: "hodiny",
-                        machineLabel: "hours"
+                        machineLabel: "hours",
+                        placeholder: "h"
                     },
                     minute: {
                         enabled: true,
                         quantity: 0,
                         label: "minuty",
-                        machineLabel: "minutes"
+                        machineLabel: "minutes",
+                        placeholder: "m"
                     },
                     second: {
                         enabled: true,
                         quantity: 0,
                         label: "sekundy",
-                        machineLabel: "seconds"
+                        machineLabel: "seconds",
+                        placeholder: "s"
                     }
                 }
             }

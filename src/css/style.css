@@ -30,8 +30,8 @@ input {
   margin: 0 5px 0 5px;
 }
 .c-button button {
-  min-width: 28px;
-  height: 28px;
+  min-width: 30px;
+  height: 30px;
   background-color: #797979;
   color: #fff;
   border: 0 none;
@@ -110,10 +110,11 @@ input {
   margin: 0 5px 0 5px;
 }
 .c-input input {
-  height: 28px;
+  height: 30px;
   padding: 0 4px 0 4px;
   border: 2px solid #000;
   border-radius: 5px;
+  font-size: 18px;
   text-align: center;
 }
 .c-input input::-webkit-outer-spin-button,
@@ -140,7 +141,7 @@ input {
 .c-time-row .time-row-controller {
   display: flex;
   justify-content: flex-end;
-  min-width: 38px;
+  min-width: 40px;
 }
 .c-time-row .time-row-input-field {
   width: 100%;
