@@ -1,0 +1,53 @@
+// =======================================================
+// Stopwatch vue component
+// =======================================================
+
+// Variables
+@stopwatch-overlay-container-padding: 30px;
+@stopwatch-overlay-padding: 20px;
+@stopwatch-values-wrapper-margin-mobile: 4 * @elements-margin-mobile;
+@stopwatch-values-wrapper-margin-desktop: 4 * @elements-margin-desktop;
+
+// Colors
+@col-stopwatch-container-bg: @col-global-bg-secondary;
+
+.c-stopwatch {
+    .stopwatch-overlay-container {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: @stopwatch-overlay-container-padding;
+        background-color: rgba(@col-stopwatch-container-bg, 0.7);
+    }
+
+    .stopwatch-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: 100%;
+        padding: @stopwatch-overlay-padding;
+        border: 2px solid @col-global-brd;
+        background-color: rgba(@col-stopwatch-container-bg, 0.8);
+        font-size: 2em;
+    }
+
+    .stopwatch-values-wrapper {
+        flex: 0 0 100%;
+        margin: @stopwatch-values-wrapper-margin-mobile 0;
+        text-align: center;
+    }
+}
+
+
+// Media queries
+// =======================================================
+@media screen and (min-width: @tablet-width) {
+    .c-stopwatch {
+        .stopwatch-values-wrapper {
+            margin: @stopwatch-values-wrapper-margin-desktop 0;
+        }
+    }
+}

@@ -48,12 +48,6 @@ input {
   background-color: #b3b3b3;
   cursor: not-allowed;
 }
-.c-button.is-minus button {
-  background-image: url("../assets/img/icons/btn-minus.svg");
-}
-.c-button.is-plus button {
-  background-image: url("../assets/img/icons/btn-plus.svg");
-}
 .c-checkbox {
   width: 24px;
   height: 24px;
@@ -160,6 +154,36 @@ input {
 .c-time-row .c-input input {
   width: 100%;
 }
+.c-stopwatch .stopwatch-overlay-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background-color: rgba(189, 195, 199, 0.7);
+}
+.c-stopwatch .stopwatch-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 20px;
+  border: 2px solid #000;
+  background-color: rgba(189, 195, 199, 0.8);
+  font-size: 2em;
+}
+.c-stopwatch .stopwatch-values-wrapper {
+  flex: 0 0 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+@media screen and (min-width: 420px) {
+  .c-stopwatch .stopwatch-values-wrapper {
+    margin: 40px 0;
+  }
+}
 .m-average-time .average-time-result {
   display: flex;
   justify-content: space-between;
@@ -176,6 +200,7 @@ input {
 .m-average-time .c-button.button-row-controller button {
   background-color: #9b59b6;
   background-position: center center;
+  background-repeat: no-repeat;
 }
 .m-average-time .c-button.button-row-controller button:hover {
   background-color: #8e44ad;
@@ -185,6 +210,15 @@ input {
 }
 .m-average-time .c-button.button-row-controller button:disabled:hover {
   background-color: #b3b3b3;
+}
+.m-average-time .c-button.button-row-controller.is-minus button {
+  background-image: url("../assets/img/icons/btn-minus.svg");
+}
+.m-average-time .c-button.button-row-controller.is-plus button {
+  background-image: url("../assets/img/icons/btn-plus.svg");
+}
+.m-average-time .c-button.button-row-controller.is-stopwatch-start button {
+  background-image: url("../assets/img/icons/btn-stopwatch.svg");
 }
 @media screen and (min-width: 420px) {
   .m-average-time .average-time-result {

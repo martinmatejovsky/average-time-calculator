@@ -1,6 +1,6 @@
 <template>
     <div class="c-button" :class="this.classCustom">
-        <button :disabled="disabled" @click="buttonClickedEvent">{{label}}</button>
+        <button :disabled="disabled" @click="buttonClickedEvent" @mousedown="buttonMouseDownEvent">{{label}}</button>
     </div>
 </template>
 
@@ -11,18 +11,21 @@
                 type: String,
                 default: ""
             },
-            classCustom: {
-                type: String,
-                default: ""
-            },
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            classCustom: {
+                type: String,
+                default: ""
             }
         },
         methods: {
             buttonClickedEvent: function () {
                 this.$emit('emit-button-clicked');
+            },
+            buttonMouseDownEvent: function () {
+                this.$emit('emit-button-mouse-down');
             }
         }
     }

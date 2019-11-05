@@ -17,7 +17,8 @@
 
         <!-- add rows controller -->
         <div class="average-time-add-time-row">
-            <BaseButton classCustom="button-row-controller is-plus" @emit-button-clicked="emitButtonClickedAdd" />
+            <BaseButton classCustom="button-row-controller is-plus" @emit-button-clicked="addTimeRow" />
+            <Stopwatch />
         </div>
 
         <!-- result container -->
@@ -31,11 +32,13 @@
 
 <script>
     import TimeRow from "./project/TimeRow";
+    import Stopwatch from "./project/Stopwatch";
 
     export default {
-        name: 'AverageTimeCalculator',
+        name: "AverageTimeCalculator",
         components: {
-            TimeRow
+            TimeRow,
+            Stopwatch
         },
         data() {
             return {
@@ -78,9 +81,6 @@
             },
             removeTimeRow(index) {
                 this.timeRowsList.splice(index, 1);
-            },
-            emitButtonClickedAdd() {
-                this.addTimeRow();
             },
             parseTimeByUnits(timeInMs) {
                 let wholeDays =  Math.floor(timeInMs / 86400000);

@@ -9,26 +9,30 @@
 <script>
     export default {
         props: {
-            'type': {
+            type: {
                 type: String,
                 default: "text"
             },
-            'size': {
+            size: {
                 type: Number,
                 default: 16
             },
-            'name': {
+            name: {
                 type: String,
                 default: "",
                 required: true
             },
-            'placeholder': {
+            placeholder: {
                 type: String,
                 default: ""
             },
-            'readonly': {
+            readonly: {
                 type: Boolean,
                 default: false
+            },
+            classCustom: {
+                type: String,
+                default: ""
             }
         },
         data() {

@@ -32,6 +32,7 @@
             button {
                 background-color: @button-row-controller-col-bg;
                 background-position: center center;
+                background-repeat: no-repeat;
 
                 &:hover {
                     background-color: @button-row-controller-col-bg-hover;
@@ -43,6 +44,24 @@
                     &:hover {
                         background-color: @col-btn-bg-disabled;
                     }
+                }
+            }
+
+            &.is-minus {
+                button {
+                    background-image: url("../assets/img/icons/btn-minus.svg");
+                }
+            }
+
+            &.is-plus {
+                button {
+                    background-image: url("../assets/img/icons/btn-plus.svg");
+                }
+            }
+
+            &.is-stopwatch-start {
+                button {
+                    background-image: url("../assets/img/icons/btn-stopwatch.svg");
                 }
             }
         }
