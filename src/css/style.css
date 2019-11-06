@@ -160,7 +160,6 @@ input {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 30px;
   background-color: rgba(189, 195, 199, 0.7);
 }
 .c-stopwatch .stopwatch-overlay {
@@ -168,11 +167,15 @@ input {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  height: 100%;
-  padding: 20px;
+  height: calc(100% - 2 * 40px);
+  margin: 40px;
+  padding: 40px;
   border: 2px solid #000;
+  border-radius: 10px;
   background-color: rgba(189, 195, 199, 0.8);
+  text-align: center;
   font-size: 2em;
+  cursor: pointer;
 }
 .c-stopwatch .stopwatch-values-wrapper {
   flex: 0 0 100%;
@@ -182,6 +185,13 @@ input {
 @media screen and (min-width: 420px) {
   .c-stopwatch .stopwatch-values-wrapper {
     margin: 40px 0;
+  }
+}
+@media screen and (min-width: 800px) {
+  .c-stopwatch .stopwatch-overlay {
+    height: calc(100% - 2 * 90px);
+    margin: 90px;
+    padding: 90px;
   }
 }
 .m-average-time .average-time-result {

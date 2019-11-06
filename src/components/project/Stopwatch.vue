@@ -6,8 +6,8 @@
             <div class="stopwatch-overlay" @mousedown="stopMeasuringTime">
                 <div class="stopwatch-values-wrapper">
                     <span v-if="days" class="stopwatch-view-days">{{days}}</span>
-                    <span v-if="hours || days" class="stopwatch-view-hours">{{hours}}&nbsp;{{hoursMinDivider}}&nbsp;</span>
-                    <span class="stopwatch-view-minutes">{{minutes}}&nbsp;{{minSecDivider}}&nbsp;</span>
+                    <span v-if="hours || days" class="stopwatch-view-hours">{{hours}}{{hoursMinDivider}}</span>
+                    <span class="stopwatch-view-minutes">{{minutes}}{{minSecDivider}}</span>
                     <span class="stopwatch-view-seconds">{{seconds}}{{secCentisecDivider}}</span>
                     <span class="stopwatch-view-miliseconds">{{milliseconds}}</span>
                 </div>
@@ -36,6 +36,11 @@
             secCentisecDivider: {
                 type: String,
                 default: ","
+            },
+            // in miliseconds how fast is stopwatch refreshing viewed numbers
+            interval: {
+                type: Number,
+                default: 10
             }
         },
         data: function() {
@@ -60,11 +65,11 @@
                 this.seconds = this.padToTwoDigits( Math.floor(timeDif / 1000 % 60) );
                 this.milliseconds = this.padToTwoDigits( Math.floor(timeDif / 10 % 100) );
             },
-            startMeasuringTime() {
+            startMeasuringTime(interval) {
                 if (!this.stopwatchInterval) {
                     this.startedOnDate = new Date().getTime();
 
-                    this.stopwatchInterval = setInterval(this.updateStopwatch, 10);
+                    this.stopwatchInterval = setInterval(this.updateStopwatch, interval);
                 }
             },
             stopMeasuringTime() {

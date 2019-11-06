@@ -58,7 +58,7 @@
                         quantity: 0,
                         label: "dny",
                         machineLabel: "days",
-                        placeholder: "d"
+                        placeholder: "dny"
                     },
                     hour: {
                         enabled: true,
@@ -72,7 +72,7 @@
                         quantity: 0,
                         label: "minuty",
                         machineLabel: "minutes",
-                        placeholder: "m"
+                        placeholder: "min"
                     },
                     second: {
                         enabled: true,
