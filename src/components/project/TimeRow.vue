@@ -13,7 +13,7 @@
                 <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID"
                            :placeholder="inputUnit.placeholder"
                            :inputModel.sync="inputUnit.quantity"
-                           @emit-value-key-up="inputUnit.quantity = $event" />
+                           @emit-value-key-down="inputUnit.quantity = $event" />
                 <div v-if="role === 'heading'">{{inputUnit.label}}</div>
             </div>
         </template>

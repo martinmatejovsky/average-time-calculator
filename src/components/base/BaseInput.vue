@@ -2,7 +2,7 @@
     <div class="c-input" :class="classObject">
         <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" lang="cs"
                @change="emitValueChanged"
-               @keyup="emitValueEntered"/>
+               @keydown="emitValueEntered"/>
     </div>
 </template>
 
@@ -52,7 +52,7 @@
                 this.$emit("emit-value-changed", this.inputValue);
             },
             emitValueEntered() {
-                this.$emit("emit-value-key-up", this.inputValue);
+                this.$emit("emit-value-key-down", this.inputValue);
             }
         }
     }
