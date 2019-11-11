@@ -8,7 +8,7 @@
         <!-- rows with inputs -->
         <template v-for="(timeRow, index) in timeRowsList">
             <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="timeRow.rowID"
-                     :isTheOnlyTimeRow="timeRowsList.length === 1"
+                     :isTheOnlyTimeRow="timeRowsList.length === 1" ref="timeRow"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
                      @emit-row-activity-status-changed="timeRow.enabled = $event"
@@ -18,7 +18,7 @@
         <!-- add rows controller -->
         <div class="average-time-add-time-row">
             <BaseButton classCustom="button-row-controller is-plus" @emit-button-clicked="addTimeRow" />
-            <Stopwatch />
+            <Stopwatch @emit-measured-time="addRowFromStopwatch"/>
         </div>
 
         <!-- result container -->
@@ -42,10 +42,6 @@
         },
         data() {
             return {
-                timeRowTemplate: {
-                    enabled: true,
-                    totalTimeInMsec: 0
-                },
                 timeRowsList: [],
                 lastUsedRowID: 1
             }
@@ -94,6 +90,15 @@
                 let secondString = seconds ? seconds + " s " : "";
 
                 return dayString + hourString + minuteString + secondString;
+            },
+            addRowFromStopwatch(stopwatchTime) {
+                this.addTimeRow();
+                this.$nextTick( () => {
+                        // TODO - how to run internal method only in specified timeRow?
+                        let lastIndex = this.$refs.timeRow.length - 1;
+                        this.$refs.timeRow[lastIndex].fillTimeRow(stopwatchTime);
+                    }
+                );
             }
         },
         created() {

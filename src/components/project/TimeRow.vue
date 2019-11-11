@@ -10,14 +10,18 @@
         <!-- headers for inputs or inputs for times -->
         <template v-for="inputUnit in timeUnits">
             <div :key="inputUnit.label" v-if="inputUnit.enabled" class="time-row-input-field">
-                <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID" :placeholder="inputUnit.placeholder" @emit-value-key-up="inputUnit.quantity = $event" />
+                <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID"
+                           :placeholder="inputUnit.placeholder"
+                           :inputModel.sync="inputUnit.quantity"
+                           @emit-value-key-up="inputUnit.quantity = $event" />
                 <div v-if="role === 'heading'">{{inputUnit.label}}</div>
             </div>
         </template>
 
         <!-- button for removing row -->
         <div class="time-row-controller">
-            <BaseButton v-if="role === 'input'"  classCustom="button-row-controller is-minus" :disabled="isTheOnlyTimeRow" @emit-button-clicked="emitButtonClickedRemove" />
+            <BaseButton v-if="role === 'input'"  classCustom="button-row-controller is-minus" :disabled="isTheOnlyTimeRow"
+                        @emit-button-clicked="emitButtonClickedRemove" />
             <div v-if="role === 'heading'" class="time-row-controller-heading">smaž</div>
         </div>
     </div>
@@ -28,9 +32,9 @@
     export default {
         name: "TimeRow",
         props: {
-            // ROLE: component can be presented in multiple states - either as a row with inputs,
-            // or as a row with names of each input instead of input fields. Row with names
-            // is intended as table header thad reacts on actual list of inputs inside component
+            // ROLE: component can be presented in two states - either as a row with inputs,
+            // or as a row with names. Row with names is intended as table header: only names
+            // for enabled inputs are shown.
             role: {
                 type: String,
                 validator: (type) => ["heading", "input"].includes(type),
@@ -61,7 +65,7 @@
                         placeholder: "dny"
                     },
                     hour: {
-                        enabled: true,
+                        enabled: false,
                         quantity: 0,
                         label: "hodiny",
                         machineLabel: "hours",
@@ -80,6 +84,13 @@
                         label: "sekundy",
                         machineLabel: "seconds",
                         placeholder: "s"
+                    },
+                    centisecond: {
+                        enabled: true,
+                        quantity: 0,
+                        label: "setiny",
+                        machineLabel: "hundredths",
+                        placeholder: "set"
                     }
                 }
             }
@@ -92,7 +103,8 @@
                         (this.timeUnits.day.quantity * 1000 * 60 * 60 * 24) +
                         (this.timeUnits.hour.quantity * 1000 * 60 * 60) +
                         (this.timeUnits.minute.quantity * 1000 * 60) +
-                        (this.timeUnits.second.quantity * 1000);
+                        (this.timeUnits.second.quantity * 1000) +
+                        (this.timeUnits.centisecond.quantity * 10);
 
                     this.emitNewTime(totalTime);
                 }
@@ -110,6 +122,12 @@
             },
             emitActivityStatusChanged() {
                 this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
+            },
+            fillTimeRow(timeObj) {
+                console.log(timeObj);
+                for (let unit in timeObj) {
+                    this.timeUnits[unit].quantity = timeObj[unit];
+                }
             }
         },
         destroyed() {

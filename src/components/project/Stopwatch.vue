@@ -5,11 +5,11 @@
         <div v-if="stopwatchInterval" class="stopwatch-overlay-container">
             <div class="stopwatch-overlay" @mousedown="stopMeasuringTime">
                 <div class="stopwatch-values-wrapper">
-                    <span v-if="days" class="stopwatch-view-days">{{days}}</span>
-                    <span v-if="hours || days" class="stopwatch-view-hours">{{hours}}{{hoursMinDivider}}</span>
-                    <span class="stopwatch-view-minutes">{{minutes}}{{minSecDivider}}</span>
-                    <span class="stopwatch-view-seconds">{{seconds}}{{secCentisecDivider}}</span>
-                    <span class="stopwatch-view-miliseconds">{{milliseconds}}</span>
+                    <span v-if="measuredTime.day" class="stopwatch-view-days">{{measuredTime.day}}</span>
+                    <span v-if="measuredTime.hour || measuredTime.day" class="stopwatch-view-hours">{{measuredTime.hour}}{{hoursMinDivider}}</span>
+                    <span class="stopwatch-view-minutes">{{measuredTime.minute}}{{minSecDivider}}</span>
+                    <span class="stopwatch-view-seconds">{{measuredTime.second}}{{secCentisecDivider}}</span>
+                    <span class="stopwatch-view-miliseconds">{{measuredTime.centisecond}}</span>
                 </div>
                 <div class="stopwatch-instruction">{{instructions}}</div>
             </div>
@@ -37,7 +37,7 @@
                 type: String,
                 default: ","
             },
-            // in miliseconds how fast is stopwatch refreshing viewed numbers
+            // in milliseconds how fast is stopwatch refreshing viewed numbers
             interval: {
                 type: Number,
                 default: 10
@@ -47,11 +47,13 @@
             return {
                 stopwatchInterval: 0,
                 startedOnDate: 0,
-                days: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-                milliseconds: 0
+                measuredTime: {
+                    day: 0,
+                    hour: 0,
+                    minute: 0,
+                    second: 0,
+                    centisecond: 0
+                }
             }
         },
         methods: {
@@ -59,11 +61,11 @@
                 let now = new Date().getTime();
                 let timeDif = now - this.startedOnDate;
 
-                this.days = Math.floor(timeDif / (1000 * 60 * 60 * 24));
-                this.hours = Math.floor(timeDif / (1000 * 60 * 60) % 24);
-                this.minutes = this.padToTwoDigits( Math.floor(timeDif / (1000 * 60) % 60) );
-                this.seconds = this.padToTwoDigits( Math.floor(timeDif / 1000 % 60) );
-                this.milliseconds = this.padToTwoDigits( Math.floor(timeDif / 10 % 100) );
+                this.measuredTime.day = Math.floor(timeDif / (1000 * 60 * 60 * 24));
+                this.measuredTime.hour = Math.floor(timeDif / (1000 * 60 * 60) % 24);
+                this.measuredTime.minute = this.padToTwoDigits( Math.floor(timeDif / (1000 * 60) % 60) );
+                this.measuredTime.second = this.padToTwoDigits( Math.floor(timeDif / 1000 % 60) );
+                this.measuredTime.centisecond = this.padToTwoDigits( Math.floor(timeDif / 10 % 100) );
             },
             startMeasuringTime(interval) {
                 if (!this.stopwatchInterval) {
@@ -74,12 +76,17 @@
             },
             stopMeasuringTime() {
                 clearInterval(this.stopwatchInterval);
+                this.emitMeasuredTime(this.measuredTime);
+
                 this.stopwatchInterval = 0;
                 this.startedOnDate = 0;
             },
             padToTwoDigits(number) {
                 return ("00" + number).substr(-2);
-            }
+            },
+            emitMeasuredTime() {
+                this.$emit("emit-measured-time", this.measuredTime);
+            },
         }
     }
 </script>
