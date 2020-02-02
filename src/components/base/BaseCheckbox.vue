@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "BaseButton",
+        name: "BaseCheckbox",
         props: {
             label: {
                 type: String,

@@ -1,6 +1,6 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="inputValue" lang="cs"
+        <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="componentModel" lang="cs"
                @change="emitValueChanged"
                @keydown="emitValueEntered"/>
     </div>
@@ -22,6 +22,10 @@
                 default: "",
                 required: true
             },
+            inputValue: {
+                type: Number,
+                default: null
+            },
             placeholder: {
                 type: String,
                 default: ""
@@ -37,7 +41,7 @@
         },
         data() {
             return {
-                inputValue: ""
+                componentModel: this.inputValue
             }
         },
         computed: {
@@ -49,10 +53,10 @@
         },
         methods: {
             emitValueChanged() {
-                this.$emit("emit-value-changed", this.inputValue);
+                this.$emit("emit-value-changed", this.componentModel);
             },
             emitValueEntered() {
-                this.$emit("emit-value-key-down", this.inputValue);
+                this.$emit("emit-value-key-down", this.componentModel);
             }
         }
     }

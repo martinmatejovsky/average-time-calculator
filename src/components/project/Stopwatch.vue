@@ -48,6 +48,7 @@
                 stopwatchInterval: 0,
                 startedOnDate: 0,
                 measuredTime: {
+                    total: 0,
                     day: 0,
                     hour: 0,
                     minute: 0,
@@ -59,7 +60,7 @@
         methods: {
             updateStopwatch: function() {
                 let now = new Date().getTime();
-                let timeDif = now - this.startedOnDate;
+                let timeDif = this.measuredTime.total = now - this.startedOnDate;
 
                 this.measuredTime.day = Math.floor(timeDif / (1000 * 60 * 60 * 24));
                 this.measuredTime.hour = Math.floor(timeDif / (1000 * 60 * 60) % 24);
@@ -70,14 +71,12 @@
             startMeasuringTime(interval) {
                 if (!this.stopwatchInterval) {
                     this.startedOnDate = new Date().getTime();
-
                     this.stopwatchInterval = setInterval(this.updateStopwatch, interval);
                 }
             },
             stopMeasuringTime() {
                 clearInterval(this.stopwatchInterval);
-                this.emitMeasuredTime(this.measuredTime);
-
+                this.emitMeasuredTime();
                 this.stopwatchInterval = 0;
                 this.startedOnDate = 0;
             },
@@ -85,7 +84,7 @@
                 return ("00" + number).substr(-2);
             },
             emitMeasuredTime() {
-                this.$emit("emit-measured-time", this.measuredTime);
+                this.$emit("emit-measured-time", this.measuredTime.total);
             },
         }
     }

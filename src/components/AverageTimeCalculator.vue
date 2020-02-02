@@ -7,7 +7,9 @@
 
         <!-- rows with inputs -->
         <template v-for="(timeRow, index) in timeRowsList">
-            <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input" :timeRowID="timeRow.rowID"
+            <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input"
+                     :timeRowID="timeRow.rowID"
+                     :initialTime="timeRow.totalTimeInMsec"
                      :isTheOnlyTimeRow="timeRowsList.length === 1" ref="timeRow"
                      @emit-remove-time-row="removeTimeRow(index)"
                      @emit-time-changed="timeRow.totalTimeInMsec = $event"
@@ -67,18 +69,22 @@
             }
         },
         methods: {
-            addTimeRow() {
-                this.timeRowsList.push({
+            addTimeRow(customSettings) {
+                let defaultSettings = {
                     enabled: true,
                     totalTimeInMsec: 0,
                     rowID: this.lastUsedRowID
-                });
+                };
+                let settings = Object.assign({}, defaultSettings, customSettings);
+
+                this.timeRowsList.push(settings);
                 this.lastUsedRowID++;
             },
             removeTimeRow(index) {
                 this.timeRowsList.splice(index, 1);
             },
             parseTimeByUnits(timeInMs) {
+                // TODO - this code is duplicated in TimeRow.vue
                 let wholeDays =  Math.floor(timeInMs / 86400000);
                 let wholeHours =  Math.floor((timeInMs / 3600000) % 24);
                 let wholeMinuted =  Math.floor((timeInMs / 60000) % 60);
@@ -92,13 +98,7 @@
                 return dayString + hourString + minuteString + secondString;
             },
             addRowFromStopwatch(stopwatchTime) {
-                this.addTimeRow();
-                this.$nextTick( () => {
-                        // TODO - how to run internal method only in specified timeRow?
-                        let lastIndex = this.$refs.timeRow.length - 1;
-                        this.$refs.timeRow[lastIndex].fillTimeRow(stopwatchTime);
-                    }
-                );
+                this.addTimeRow({totalTimeInMsec: stopwatchTime});
             }
         },
         created() {

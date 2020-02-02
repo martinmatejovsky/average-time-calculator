@@ -12,7 +12,7 @@
             <div :key="inputUnit.label" v-if="inputUnit.enabled" class="time-row-input-field">
                 <BaseInput v-if="role === 'input'" type="number" :name="'input-' + inputUnit.machineLabel + '-' + timeRowID"
                            :placeholder="inputUnit.placeholder"
-                           :inputModel.sync="inputUnit.quantity"
+                           :inputValue.sync="inputUnit.quantity"
                            @emit-value-key-down="inputUnit.quantity = $event" />
                 <div v-if="role === 'heading'">{{inputUnit.label}}</div>
             </div>
@@ -51,7 +51,11 @@
             isTheOnlyTimeRow: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            initialTime: {
+                type: Number,
+                default: 0
+            },
         },
         data() {
             return {
@@ -124,10 +128,19 @@
                 this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
             },
             fillTimeRow(timeObj) {
-                console.log(timeObj);
                 for (let unit in timeObj) {
-                    this.timeUnits[unit].quantity = timeObj[unit];
+                    this.timeUnits[unit].quantity = Number(timeObj[unit]);
                 }
+            }
+        },
+        created() {
+            if (this.initialTime) {
+                // TODO - this code is duplicated in AverageTimeCalculator.vue
+                this.timeUnits.day.quantity =  Math.floor(this.initialTime / 86400000);
+                this.timeUnits.hour.quantity =  Math.floor((this.initialTime / 3600000) % 24);
+                this.timeUnits.minute.quantity =  Math.floor((this.initialTime / 60000) % 60);
+                this.timeUnits.second.quantity =  Math.floor((this.initialTime / 1000) % 60);
+                this.timeUnits.centisecond.quantity =  Math.floor((this.initialTime / 10) % 100);
             }
         },
         destroyed() {
