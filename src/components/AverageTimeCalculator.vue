@@ -6,16 +6,18 @@
         <TimeRow role="heading" />
 
         <!-- rows with inputs -->
-        <template v-for="(timeRow, index) in timeRowsList">
-            <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input"
-                     :timeRowID="timeRow.rowID"
-                     :initialTime="timeRow.totalTimeInMsec"
-                     :isTheOnlyTimeRow="timeRowsList.length === 1" ref="timeRow"
-                     @emit-remove-time-row="removeTimeRow(index)"
-                     @emit-time-changed="timeRow.totalTimeInMsec = $event"
-                     @emit-row-activity-status-changed="timeRow.enabled = $event"
-            />
-        </template>
+        <transition-group name="slide-to-side" tag="div">
+            <template v-for="(timeRow, index) in timeRowsList">
+                <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input"
+                         :timeRowID="timeRow.rowID"
+                         :initialTime="timeRow.totalTimeInMsec"
+                         :isTheOnlyTimeRow="timeRowsList.length === 1" ref="timeRow"
+                         @emit-remove-time-row="removeTimeRow(index)"
+                         @emit-time-changed="timeRow.totalTimeInMsec = $event"
+                         @emit-row-activity-status-changed="timeRow.enabled = $event"
+                />
+            </template>
+        </transition-group>
 
         <!-- add rows controller -->
         <div class="average-time-add-time-row">

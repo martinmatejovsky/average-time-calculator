@@ -30,6 +30,7 @@ input {
   margin: 0 5px 0 5px;
 }
 .c-button button {
+  display: block;
   min-width: 30px;
   height: 30px;
   background-color: #797979;
@@ -119,6 +120,20 @@ input {
 .c-input input[type=number] {
   -moz-appearance: textfield;
 }
+.c-input input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  opacity: 1;
+  /* Firefox */
+}
+.c-input input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #b3b3b3;
+}
+.c-input input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #b3b3b3;
+}
 .c-input :read-only {
   border: 0 none;
   background-color: transparent;
@@ -126,6 +141,9 @@ input {
 .c-time-row {
   display: flex;
   justify-content: space-around;
+  position: relative;
+  left: 0;
+  transform: scaleY(1);
   align-items: center;
   margin-bottom: 15px;
 }
@@ -153,6 +171,17 @@ input {
 }
 .c-time-row .c-input input {
   width: 100%;
+}
+.c-time-row.slide-to-side-enter,
+.c-time-row.slide-to-side-leave-to {
+  left: -100%;
+  opacity: 0;
+  transform: scaleY(0);
+  margin-bottom: -30px;
+}
+.c-time-row.slide-to-side-enter-active,
+.c-time-row.slide-to-side-leave-active {
+  transition: opacity 0.3s ease-out, left 0.2s ease-out, transform 0.2s ease-out, margin-bottom 0.2s;
 }
 .c-stopwatch .stopwatch-overlay-container {
   position: fixed;

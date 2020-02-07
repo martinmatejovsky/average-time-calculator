@@ -63,35 +63,35 @@
                 timeUnits: {
                     day: {
                         enabled: false,
-                        quantity: 0,
+                        quantity: null,
                         label: "dny",
                         machineLabel: "days",
                         placeholder: "dny"
                     },
                     hour: {
                         enabled: false,
-                        quantity: 0,
+                        quantity: null,
                         label: "hodiny",
                         machineLabel: "hours",
                         placeholder: "h"
                     },
                     minute: {
                         enabled: true,
-                        quantity: 0,
+                        quantity: null,
                         label: "minuty",
                         machineLabel: "minutes",
                         placeholder: "min"
                     },
                     second: {
                         enabled: true,
-                        quantity: 0,
+                        quantity: null,
                         label: "sekundy",
                         machineLabel: "seconds",
                         placeholder: "s"
                     },
                     centisecond: {
                         enabled: true,
-                        quantity: 0,
+                        quantity: null,
                         label: "setiny",
                         machineLabel: "hundredths",
                         placeholder: "set"
@@ -126,11 +126,6 @@
             },
             emitActivityStatusChanged() {
                 this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
-            },
-            fillTimeRow(timeObj) {
-                for (let unit in timeObj) {
-                    this.timeUnits[unit].quantity = Number(timeObj[unit]);
-                }
             }
         },
         created() {

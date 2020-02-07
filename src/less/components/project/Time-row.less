@@ -8,6 +8,9 @@
 .c-time-row {
     display: flex;
     justify-content: space-around;
+    position: relative;
+    left: 0;
+    transform: scaleY(1);
     align-items: center;
     margin-bottom: 3 * @elements-margin-mobile;
 
@@ -47,5 +50,19 @@
         input {
             width: 100%;
         }
+    }
+
+    // Transitions
+    &.slide-to-side-enter,
+    &.slide-to-side-leave-to {
+        left: -100%;
+        opacity: 0;
+        transform: scaleY(0);
+        margin-bottom: -@form-element-height;
+    }
+
+    &.slide-to-side-enter-active,
+    &.slide-to-side-leave-active {
+        transition: opacity 0.3s ease-out, left 0.2s ease-out, transform 0.2s ease-out, margin-bottom 0.2s;
     }
 }

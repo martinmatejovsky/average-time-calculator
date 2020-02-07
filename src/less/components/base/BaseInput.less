@@ -25,6 +25,19 @@
         &[type=number] {
             -moz-appearance:textfield;
         }
+
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: @col-input-placeholder;
+            opacity: 1; /* Firefox */
+        }
+
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: @col-input-placeholder;
+        }
+
+        &::-ms-input-placeholder { /* Microsoft Edge */
+            color: @col-input-placeholder;
+        }
     }
 
     :read-only {
