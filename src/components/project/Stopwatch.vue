@@ -2,17 +2,15 @@
     <div class="c-stopwatch">
         <BaseButton classCustom="button-row-controller is-stopwatch-start is-major" @emit-button-mouse-down="startMeasuringTime" />
 
-        <BaseOverlay v-if="stopwatchInterval">
-            <div class="stopwatch-container" @mousedown="stopMeasuringTime">
-                <div class="stopwatch-values-wrapper">
-                    <span v-if="measuredTime.day" class="stopwatch-view-days">{{measuredTime.day}}</span>
-                    <span v-if="measuredTime.hour || measuredTime.day" class="stopwatch-view-hours">{{measuredTime.hour}}{{hoursMinDivider}}</span>
-                    <span class="stopwatch-view-minutes">{{measuredTime.minute}}{{minSecDivider}}</span>
-                    <span class="stopwatch-view-seconds">{{measuredTime.second}}{{secCentisecDivider}}</span>
-                    <span class="stopwatch-view-miliseconds">{{measuredTime.centisecond}}</span>
-                </div>
-                <div class="stopwatch-instruction">{{instructions}}</div>
+        <BaseOverlay v-if="stopwatchInterval" @mousedown.native="stopMeasuringTime">
+            <div class="stopwatch-values-wrapper">
+                <span v-if="measuredTime.day" class="stopwatch-view-days">{{measuredTime.day}}</span>
+                <span v-if="measuredTime.hour || measuredTime.day" class="stopwatch-view-hours">{{measuredTime.hour}}{{hoursMinDivider}}</span>
+                <span class="stopwatch-view-minutes">{{measuredTime.minute}}{{minSecDivider}}</span>
+                <span class="stopwatch-view-seconds">{{measuredTime.second}}{{secCentisecDivider}}</span>
+                <span class="stopwatch-view-miliseconds">{{measuredTime.centisecond}}</span>
             </div>
+            <div class="stopwatch-instruction">{{instructions}}</div>
         </BaseOverlay>
     </div>
 </template>
