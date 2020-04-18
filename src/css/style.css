@@ -138,17 +138,50 @@ input {
   border: 0 none;
   background-color: transparent;
 }
+.c-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(189, 195, 199, 0.7);
+}
+.c-overlay .overlay-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: calc(100% - 2 * 40px);
+  margin: 40px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: rgba(189, 195, 199, 0.8);
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+.c-overlay .time-row-confirm-message {
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 800px) {
+  .c-overlay .overlay-container {
+    height: calc(100% - 2 * 90px);
+    margin: 90px;
+  }
+}
 .c-time-row {
   display: flex;
   justify-content: space-around;
   position: relative;
   left: 0;
-  transform: scaleY(1);
   align-items: center;
   margin-bottom: 15px;
 }
 .c-time-row.is-not-affecting-calculation .c-input input {
   color: #797979;
+  text-decoration: line-through;
 }
 .c-time-row .time-row-controller {
   display: flex;
@@ -179,48 +212,20 @@ input {
   transform: scaleY(0);
   margin-bottom: -30px;
 }
-.c-time-row.slide-to-side-enter-active,
+.c-time-row.slide-to-side-enter-active {
+  transition: all 0.2s ease-out;
+}
 .c-time-row.slide-to-side-leave-active {
-  transition: opacity 0.3s ease-out, left 0.2s ease-out, transform 0.2s ease-out, margin-bottom 0.2s;
-}
-.c-stopwatch .stopwatch-overlay-container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(189, 195, 199, 0.7);
-}
-.c-stopwatch .stopwatch-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  height: calc(100% - 2 * 40px);
-  margin: 40px;
-  padding: 40px;
-  border: 2px solid #000;
-  border-radius: 10px;
-  background-color: rgba(189, 195, 199, 0.8);
-  text-align: center;
-  font-size: 2em;
-  cursor: pointer;
+  transition: opacity 0.3s ease-out, left 0.3s ease-out, transform 0.2s, margin-bottom 0.4s ease-out;
 }
 .c-stopwatch .stopwatch-values-wrapper {
   flex: 0 0 100%;
   margin: 20px 0;
   text-align: center;
 }
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 800px) {
   .c-stopwatch .stopwatch-values-wrapper {
     margin: 40px 0;
-  }
-}
-@media screen and (min-width: 800px) {
-  .c-stopwatch .stopwatch-overlay {
-    height: calc(100% - 2 * 90px);
-    margin: 90px;
-    padding: 90px;
   }
 }
 .m-average-time .average-time-result {

@@ -2,8 +2,8 @@
     <div class="c-stopwatch">
         <BaseButton classCustom="button-row-controller is-stopwatch-start" @emit-button-mouse-down="startMeasuringTime" />
 
-        <div v-if="stopwatchInterval" class="stopwatch-overlay-container">
-            <div class="stopwatch-overlay" @mousedown="stopMeasuringTime">
+        <BaseOverlay v-if="stopwatchInterval">
+            <div class="stopwatch-container" @mousedown="stopMeasuringTime">
                 <div class="stopwatch-values-wrapper">
                     <span v-if="measuredTime.day" class="stopwatch-view-days">{{measuredTime.day}}</span>
                     <span v-if="measuredTime.hour || measuredTime.day" class="stopwatch-view-hours">{{measuredTime.hour}}{{hoursMinDivider}}</span>
@@ -13,13 +13,15 @@
                 </div>
                 <div class="stopwatch-instruction">{{instructions}}</div>
             </div>
-        </div>
+        </BaseOverlay>
     </div>
 </template>
 
 <script>
+    import BaseOverlay from "../base/BaseOverlay";
     export default {
         name: "Stopwatch",
+        components: {BaseOverlay},
         props: {
             instructions: {
                 type: String,

@@ -21,16 +21,32 @@
         <!-- button for removing row -->
         <div class="time-row-controller">
             <BaseButton v-if="role === 'input'"  classCustom="button-row-controller is-minus" :disabled="isTheOnlyTimeRow"
-                        @emit-button-clicked="emitButtonClickedRemove" />
+                        @emit-button-clicked="overlayRemovalVisible = true" />
             <div v-if="role === 'heading'" class="time-row-controller-heading">smaž</div>
         </div>
+
+        <!-- overlay to confirm row removal -->
+        <BaseOverlay v-if="overlayRemovalVisible">
+            <div class="time-row-confirm-message">Opravdu chcete odstranit řádek?</div>
+            <div class="time-row-confirm-controls">
+                <BaseButton @emit-button-clicked="emitButtonClickedRemove">
+                    Odstranit
+                </BaseButton>
+                <BaseButton @emit-button-clicked="overlayRemovalVisible = false">
+                    Zpět
+                </BaseButton>
+            </div>
+        </BaseOverlay>
     </div>
 </template>
 
 
 <script>
+    import BaseOverlay from "../base/BaseOverlay";
+    import BaseButton from "../base/BaseButton";
     export default {
         name: "TimeRow",
+        components: {BaseButton, BaseOverlay},
         props: {
             // ROLE: component can be presented in two states - either as a row with inputs,
             // or as a row with names. Row with names is intended as table header: only names
@@ -60,6 +76,7 @@
         data() {
             return {
                 rowIsAffectingCalculation: this.initialEnabledState,
+                overlayRemovalVisible: false,
                 timeUnits: {
                     day: {
                         enabled: false,
@@ -119,6 +136,7 @@
         },
         methods: {
             emitButtonClickedRemove() {
+                this.overlayRemovalVisible = false;
                 this.$destroy();
             },
             emitNewTime(totalTime) {

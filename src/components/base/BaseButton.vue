@@ -1,15 +1,17 @@
 <template>
     <div class="c-button" :class="this.classCustom">
-        <button :disabled="disabled" @click="buttonClickedEvent" @mousedown="buttonMouseDownEvent">{{label}}</button>
+        <button :type="type" :disabled="disabled" @click="buttonClickedEvent" @mousedown="buttonMouseDownEvent">
+            <slot></slot>
+        </button>
     </div>
 </template>
 
 <script>
     export default {
         props: {
-            label: {
+            type: {
                 type: String,
-                default: ""
+                default: "button"
             },
             disabled: {
                 type: Boolean,

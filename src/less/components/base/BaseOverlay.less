@@ -1,0 +1,52 @@
+// =======================================================
+// Overlay presentational component
+// =======================================================
+
+// Variables
+@overlay-overlay-margin-mobile: 40px;
+@overlay-overlay-margin-desktop: 90px;
+@overlay-border-radius: 2 * @elements-border-radius;
+
+// Colors
+@col-overlay-container-bg: @col-global-bg-secondary;
+
+.c-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(@col-overlay-container-bg, 0.7);
+    
+    .overlay-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: calc(100% - 2 * @overlay-overlay-margin-mobile);
+        margin: @overlay-overlay-margin-mobile;
+        border: 2px solid @col-global-brd;
+        border-radius: @overlay-border-radius;
+        background-color: rgba(@col-overlay-container-bg, 0.8);
+        text-align: center;
+        font-size: 2em;
+        cursor: pointer;
+    }
+
+    .time-row-confirm-message {
+        margin-bottom: @elements-margin-mobile * 2;
+    }
+}
+
+// Media queries
+// =======================================================
+@media screen and (min-width: @desktop-width) {
+    .c-overlay {
+        .overlay-container {
+            height: calc(100% - 2 * @overlay-overlay-margin-desktop);
+            margin: @overlay-overlay-margin-desktop;
+        }
+    }
+}

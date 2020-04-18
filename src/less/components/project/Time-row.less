@@ -10,7 +10,6 @@
     justify-content: space-around;
     position: relative;
     left: 0;
-    transform: scaleY(1);
     align-items: center;
     margin-bottom: 3 * @elements-margin-mobile;
 
@@ -18,6 +17,7 @@
         .c-input {
             input {
                 color: @col-time-row-input-not-affecting;
+                text-decoration: line-through;
             }
         }
     }
@@ -61,8 +61,11 @@
         margin-bottom: -@form-element-height;
     }
 
-    &.slide-to-side-enter-active,
+    &.slide-to-side-enter-active {
+        transition: all 0.2s ease-out;
+    }
+
     &.slide-to-side-leave-active {
-        transition: opacity 0.3s ease-out, left 0.2s ease-out, transform 0.2s ease-out, margin-bottom 0.2s;
+        transition: opacity 0.3s ease-out, left 0.3s ease-out, transform 0.2s, margin-bottom 0.4s ease-out;
     }
 }

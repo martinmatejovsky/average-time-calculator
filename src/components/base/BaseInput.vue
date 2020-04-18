@@ -2,7 +2,8 @@
     <div class="c-input" :class="classObject">
         <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="componentModel" lang="cs"
                @change="emitValueChanged"
-               @keydown="emitValueEntered"/>
+               @keydown="emitValueEntered"
+               @focus="$event.target.select()"/>
     </div>
 </template>
 
