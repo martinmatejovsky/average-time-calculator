@@ -29,10 +29,10 @@
         <BaseOverlay v-if="overlayRemovalVisible">
             <div class="time-row-confirm-message">Opravdu chcete odstranit řádek?</div>
             <div class="time-row-confirm-controls">
-                <BaseButton @emit-button-clicked="emitButtonClickedRemove">
+                <BaseButton classCustom="is-major is-confirm" @emit-button-clicked="emitButtonClickedRemove">
                     Odstranit
                 </BaseButton>
-                <BaseButton @emit-button-clicked="overlayRemovalVisible = false">
+                <BaseButton classCustom="is-major" @emit-button-clicked="overlayRemovalVisible = false">
                     Zpět
                 </BaseButton>
             </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="c-stopwatch">
-        <BaseButton classCustom="button-row-controller is-stopwatch-start" @emit-button-mouse-down="startMeasuringTime" />
+        <BaseButton classCustom="button-row-controller is-stopwatch-start is-major" @emit-button-mouse-down="startMeasuringTime" />
 
         <BaseOverlay v-if="stopwatchInterval">
             <div class="stopwatch-container" @mousedown="stopMeasuringTime">

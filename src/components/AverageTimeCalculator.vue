@@ -21,7 +21,7 @@
 
         <!-- add rows controller -->
         <div class="average-time-add-time-row">
-            <BaseButton classCustom="button-row-controller is-plus" @emit-button-clicked="addTimeRow" />
+            <BaseButton classCustom="button-row-controller is-plus is-major" @emit-button-clicked="addTimeRow" />
             <Stopwatch @emit-measured-time="addRowFromStopwatch"/>
         </div>
 

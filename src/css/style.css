@@ -27,7 +27,7 @@ input {
 }
 .c-button {
   display: inline-block;
-  margin: 0 5px 0 5px;
+  margin: 0 5px;
 }
 .c-button button {
   display: block;
@@ -36,7 +36,7 @@ input {
   background-color: #797979;
   color: #fff;
   border: 0 none;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 .c-button button:hover {
   cursor: pointer;
@@ -48,6 +48,18 @@ input {
 .c-button button:disabled:hover {
   background-color: #b3b3b3;
   cursor: not-allowed;
+}
+.c-button.is-major {
+  margin: 0 10px;
+}
+.c-button.is-major button {
+  min-width: 38px;
+  height: 38px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+.c-button.is-confirm button {
+  background-color: #4eaa00;
 }
 .c-checkbox {
   width: 24px;
@@ -108,7 +120,7 @@ input {
   height: 30px;
   padding: 0 4px 0 4px;
   border: 2px solid #000;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 18px;
   text-align: center;
 }
@@ -155,11 +167,12 @@ input {
   flex-wrap: wrap;
   height: calc(100% - 2 * 40px);
   margin: 40px;
+  padding: 16px;
   border: 2px solid #000;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: rgba(189, 195, 199, 0.8);
   text-align: center;
-  font-size: 2em;
+  font-size: 1.6em;
   cursor: pointer;
 }
 .c-overlay .time-row-confirm-message {
@@ -240,6 +253,7 @@ input {
 .m-average-time .average-time-add-time-row {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 .m-average-time .c-button.button-row-controller button {
   background-color: #9b59b6;

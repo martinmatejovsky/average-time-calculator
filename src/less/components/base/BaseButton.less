@@ -3,10 +3,11 @@
 // =======================================================
 
 // Variables
+@button-major-magnifying-constant: 8px;
 
 .c-button {
     display: inline-block;
-    margin: 0 @elements-margin-mobile 0 @elements-margin-mobile;
+    margin: 0 @elements-margin-mobile;
 
     button {
         display: block; // fix bottom space added by chrome
@@ -29,6 +30,23 @@
                 background-color: @col-btn-bg-disabled;
                 cursor: not-allowed;
             }
+        }
+    }
+
+    &.is-major {
+        margin: 0 (@elements-margin-mobile * 2);
+
+        button {
+            min-width: @form-element-height + @button-major-magnifying-constant;
+            height: @form-element-height + @button-major-magnifying-constant;
+            padding-right: floor(@button-major-magnifying-constant * 1.5);
+            padding-left: floor(@button-major-magnifying-constant * 1.5);
+        }
+    }
+
+    &.is-confirm {
+        button {
+            background-color: @col-btn-bg-confirm;
         }
     }
 }
