@@ -10,7 +10,8 @@
                 <span class="stopwatch-view-seconds">{{measuredTime.second}}{{secCentisecDivider}}</span>
                 <span class="stopwatch-view-miliseconds">{{measuredTime.centisecond}}</span>
             </div>
-            <div class="stopwatch-instruction">{{instructions}}</div>
+            <div class="stopwatch-instruction is-mobile" v-html="instructionsMobile"></div>
+            <div class="stopwatch-instruction is-laptop" v-html="instructionsDesktop"></div>
         </BaseOverlay>
     </div>
 </template>
@@ -21,9 +22,13 @@
         name: "Stopwatch",
         components: {BaseOverlay},
         props: {
-            instructions: {
+            instructionsMobile: {
                 type: String,
                 default: "STOP dotykem"
+            },
+            instructionsDesktop: {
+                type: String,
+                default: "STOP klikem myší"
             },
             hoursMinDivider: {
                 type: String,

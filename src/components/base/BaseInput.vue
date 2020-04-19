@@ -1,8 +1,8 @@
 <template>
     <div class="c-input" :class="classObject">
-        <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model="componentModel" lang="cs"
+        <input :type="type" :size="size" :name="name" :placeholder="placeholder" :readonly="readonly" v-model.number="componentModel" lang="cs"
                @change="emitValueChanged"
-               @keydown="emitValueEntered"
+               @keyup="emitValueEntered"
                @focus="$event.target.select()"/>
     </div>
 </template>
@@ -57,7 +57,7 @@
                 this.$emit("emit-value-changed", this.componentModel);
             },
             emitValueEntered() {
-                this.$emit("emit-value-key-down", this.componentModel);
+                this.$emit("emit-value-key-up", this.componentModel);
             }
         }
     }

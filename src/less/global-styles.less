@@ -24,13 +24,14 @@ input {
 }
 
 #app {
-    max-width: @desktop-width;
+    max-width: @laptop-width;
     margin: 0 auto;
 }
 
 // Media queries
 // =======================================================
-@media screen and (min-width: @desktop-width) {
+// > 800 px
+@media screen and (min-width: @laptop-width) {
     h1 {
         margin: (4 * @elements-margin-mobile) 0 (4 * @elements-margin-mobile) 0;
         padding-bottom: 4 * @elements-margin-mobile;
