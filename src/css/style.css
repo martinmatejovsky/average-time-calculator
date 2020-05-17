@@ -231,6 +231,9 @@ input {
 .c-time-row.slide-to-side-leave-active {
   transition: opacity 0.3s ease-out, left 0.3s ease-out, transform 0.2s, margin-bottom 0.4s ease-out;
 }
+.c-time-row.slide-to-side-leave-active .c-overlay {
+  display: none;
+}
 .c-stopwatch .stopwatch-values-wrapper {
   margin: 20px 0;
 }

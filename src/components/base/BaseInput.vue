@@ -52,6 +52,11 @@
                 }
             }
         },
+        watch: {
+            inputValue() {
+                this.componentModel = this.inputValue;
+            }
+        },
         methods: {
             emitValueChanged() {
                 this.$emit("emit-value-changed", this.componentModel);

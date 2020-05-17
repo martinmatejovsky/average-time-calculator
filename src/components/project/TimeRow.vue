@@ -68,7 +68,7 @@
                 type: Boolean,
                 default: false,
             },
-            initialTime: {
+            parentTime: {
                 type: Number,
                 default: 0
             },
@@ -130,6 +130,9 @@
                     this.emitNewTime(totalTime);
                 }
             },
+            parentTime() {
+                this.parseTotalTimeIntoValues();
+            },
             rowIsAffectingCalculation() {
                 this.emitActivityStatusChanged();
             }
@@ -144,16 +147,19 @@
             },
             emitActivityStatusChanged() {
                 this.$emit("emit-row-activity-status-changed", this.rowIsAffectingCalculation)
+            },
+            parseTotalTimeIntoValues() {
+                // TODO - this code is duplicated in AverageTimeCalculator.vue
+                this.timeUnits.day.quantity =  Math.floor(this.parentTime / 86400000);
+                this.timeUnits.hour.quantity =  Math.floor((this.parentTime / 3600000) % 24);
+                this.timeUnits.minute.quantity =  Math.floor((this.parentTime / 60000) % 60);
+                this.timeUnits.second.quantity =  Math.floor((this.parentTime / 1000) % 60);
+                this.timeUnits.centisecond.quantity =  Math.floor((this.parentTime / 10) % 100);
             }
         },
         created() {
-            if (this.initialTime) {
-                // TODO - this code is duplicated in AverageTimeCalculator.vue
-                this.timeUnits.day.quantity =  Math.floor(this.initialTime / 86400000);
-                this.timeUnits.hour.quantity =  Math.floor((this.initialTime / 3600000) % 24);
-                this.timeUnits.minute.quantity =  Math.floor((this.initialTime / 60000) % 60);
-                this.timeUnits.second.quantity =  Math.floor((this.initialTime / 1000) % 60);
-                this.timeUnits.centisecond.quantity =  Math.floor((this.initialTime / 10) % 100);
+            if (this.parentTime) {
+                this.parseTotalTimeIntoValues();
             }
         },
         destroyed() {

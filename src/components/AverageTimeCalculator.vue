@@ -10,7 +10,7 @@
             <template v-for="(timeRow, index) in timeRowsList">
                 <TimeRow :key="timeRow.rowID" :initialEnabledState="timeRow.enabled" role="input"
                          :timeRowID="timeRow.rowID"
-                         :initialTime="timeRow.totalTimeInMsec"
+                         :parentTime="timeRow.totalTimeInMsec"
                          :isTheOnlyTimeRow="timeRowsList.length === 1" ref="timeRow"
                          @emit-remove-time-row="removeTimeRow(index)"
                          @emit-time-changed="timeRow.totalTimeInMsec = $event"
@@ -28,7 +28,7 @@
         <!-- result container -->
         <div class="average-time-result">
             <div class="average-time-result-label">Průměrný čas:</div>
-            <div class="average-time-result-value">{{averageTime}}</div>
+            <div class="average-time-result-value">{{averageTime.toLocaleString('cs-CZ')}}</div>
         </div>
     </div>
 
@@ -68,6 +68,9 @@
                 } else {
                     return 0;
                 }
+            },
+            localeLang() {
+                return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language;
             }
         },
         methods: {
@@ -92,6 +95,8 @@
                 let wholeMinuted =  Math.floor((timeInMs / 60000) % 60);
                 let seconds =  parseFloat(((timeInMs / 1000) % 60).toFixed(2));
 
+                seconds = seconds.toLocaleString(this.localeLang);
+
                 let dayString = wholeDays ? wholeDays + " d " : "";
                 let hourString = wholeHours ? wholeHours + " h " : "";
                 let minuteString = wholeMinuted ? wholeMinuted + " m " : "";
@@ -100,7 +105,11 @@
                 return dayString + hourString + minuteString + secondString;
             },
             addRowFromStopwatch(stopwatchTime) {
-                this.addTimeRow({totalTimeInMsec: stopwatchTime});
+                if (this.timeRowsList[this.timeRowsList.length - 1].totalTimeInMsec === 0) {
+                    this.timeRowsList[this.timeRowsList.length - 1].totalTimeInMsec = stopwatchTime;
+                } else {
+                    this.addTimeRow({totalTimeInMsec: stopwatchTime});
+                }
             }
         },
         created() {
