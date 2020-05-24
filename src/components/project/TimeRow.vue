@@ -150,11 +150,36 @@
             },
             parseTotalTimeIntoValues() {
                 // TODO - this code is duplicated in AverageTimeCalculator.vue
-                this.timeUnits.day.quantity =  Math.floor(this.parentTime / 86400000);
-                this.timeUnits.hour.quantity =  Math.floor((this.parentTime / 3600000) % 24);
-                this.timeUnits.minute.quantity =  Math.floor((this.parentTime / 60000) % 60);
-                this.timeUnits.second.quantity =  Math.floor((this.parentTime / 1000) % 60);
-                this.timeUnits.centisecond.quantity =  Math.floor((this.parentTime / 10) % 100);
+                // TODO - simplify somehow
+                if (this.timeUnits.centisecond.enabled){
+                    if (this.timeUnits.second.enabled) {
+                        this.timeUnits.centisecond.quantity =  Math.floor((this.parentTime / 10) % 100)
+                    } else {this.timeUnits.centisecond.quantity =  Math.floor(this.parentTime / 10)}
+                }
+
+                if (this.timeUnits.second.enabled) {
+                    if (this.timeUnits.minute.enabled) {
+                        this.timeUnits.second.quantity = Math.floor((this.parentTime / 1000) % 60)
+                    } else {
+                        this.timeUnits.second.quantity = Math.floor(this.parentTime / 1000)
+                    }
+                }
+
+                if (this.timeUnits.minute.enabled) {
+                    if (this.timeUnits.hour.enabled) {
+                        this.timeUnits.minute.quantity = Math.floor((this.parentTime / 60000) % 60)
+                    } else {this.timeUnits.minute.quantity = Math.floor(this.parentTime / 60000)}
+                }
+
+                if (this.timeUnits.hour.enabled) {
+                    if (this.timeUnits.day.enabled) {
+                        this.timeUnits.hour.quantity =  Math.floor((this.parentTime / 3600000) % 24);
+                    } else {this.timeUnits.hour.quantity = Math.floor(this.parentTime / 3600000)}
+                }
+
+                if (this.timeUnits.day.enabled) {
+                    this.timeUnits.day.quantity = Math.floor(this.parentTime / 86400000);
+                }
             }
         },
         created() {
