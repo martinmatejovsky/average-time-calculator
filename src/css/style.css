@@ -1,3 +1,4 @@
+@charset "utf-8";
 * {
   box-sizing: border-box;
 }
@@ -183,6 +184,18 @@ input {
     height: calc(100% - 2 * 90px);
     margin: 90px;
   }
+}
+.c-menu-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+.c-menu-bar .menu-bar-control {
+  width: 40px;
+  height: 40px;
+}
+.c-menu-bar .is-settings {
+  background: url("../assets/img/icons/settings-wheel-icon.svg") no-repeat center center;
+  background-size: 25px;
 }
 .c-time-row {
   display: flex;

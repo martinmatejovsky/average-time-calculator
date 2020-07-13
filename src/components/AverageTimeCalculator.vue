@@ -1,5 +1,6 @@
 <template>
     <div class="m-average-time">
+        <MenuBar></MenuBar>
         <h1>Výpočet průměrného času</h1>
 
         <!-- header -->
@@ -35,12 +36,14 @@
 </template>
 
 <script>
+    import MenuBar from "./project/menu-bar";
     import TimeRow from "./project/TimeRow";
     import Stopwatch from "./project/Stopwatch";
 
     export default {
         name: "AverageTimeCalculator",
         components: {
+            MenuBar,
             TimeRow,
             Stopwatch
         },
