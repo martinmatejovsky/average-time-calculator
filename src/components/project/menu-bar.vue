@@ -1,6 +1,6 @@
 <template>
     <div class="c-menu-bar">
-        <div class="menu-bar-control is-settings"></div>
+        <router-link :to="{name: 'settings'}" tag="div" class="menu-bar-control is-settings"/>
     </div>
 </template>
 

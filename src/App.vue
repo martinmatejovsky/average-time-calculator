@@ -1,17 +1,12 @@
 <template>
     <div id="app">
-        <TimeCalculator />
+        <router-view />
     </div>
 </template>
 
 <script>
-    import TimeCalculator  from './components/AverageTimeCalculator.vue'
-
     export default {
-        name: 'app',
-        components: {
-            TimeCalculator
-        }
+        name: 'app'
     }
 </script>
 
